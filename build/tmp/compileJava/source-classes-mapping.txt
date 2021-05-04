@@ -2,3 +2,23 @@ com/naekkonyang/NaekkonyangApplication.java
  com.naekkonyang.NaekkonyangApplication
 com/naekkonyang/ServletInitializer.java
  com.naekkonyang.ServletInitializer
+com/naekkonyang/config/OAuthAttributes.java
+ com.naekkonyang.config.OAuthAttributes
+ com.naekkonyang.config.OAuthAttributes$OAuthAttributesBuilder
+com/naekkonyang/domain/user/Role.java
+ com.naekkonyang.domain.user.Role
+com/naekkonyang/domain/user/AccountRepository.java
+ com.naekkonyang.domain.user.AccountRepository
+com/naekkonyang/domain/user/Account.java
+ com.naekkonyang.domain.user.Account
+ com.naekkonyang.domain.user.Account$AccountBuilder
+com/naekkonyang/domain/BaseTimeEntity.java
+ com.naekkonyang.domain.BaseTimeEntity
+com/naekkonyang/config/SessionUser.java
+ com.naekkonyang.config.SessionUser
+com/naekkonyang/config/SecurityConfig.java
+ com.naekkonyang.config.SecurityConfig
+com/naekkonyang/config/CustomOAuth2UserService.java
+ com.naekkonyang.config.CustomOAuth2UserService
+com/naekkonyang/controller/IndexController.java
+ com.naekkonyang.controller.IndexController
