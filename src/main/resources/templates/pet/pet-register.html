@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>반려묘 등록</title>
+</head>
+<body>
+    <div class="container">
+        <form th:action="@{/pet-register}" th:object="${petForm}"method="POST">
+            이름 : <input type="text" th:field="*{pet_name}"><br>
+            생일 : <input type="text" th:field="*{pet_birth}"><br>
+            성별 : <input type="text" th:field="*{pet_gender}"><br>
+            중성화여부 : <input type="text" th:field="*{pet_neutralize}"><br>
+            종류 : <input type="text" th:field="*{pet_type}"><br>
+            <button type="submit">Join</button>
+        </form> <br>
+    </div>
+<a href="/">홈으로</a>
+</body>
+</html>

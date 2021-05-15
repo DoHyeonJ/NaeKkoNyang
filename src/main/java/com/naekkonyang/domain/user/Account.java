@@ -1,17 +1,26 @@
 package com.naekkonyang.domain.user;
 
 
+import com.naekkonyang.domain.pet.Pet;
 import lombok.*;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-@Getter
-@NoArgsConstructor
 @Entity
+@Getter @Setter
+@EqualsAndHashCode(of = "id")
+@Builder @AllArgsConstructor @NoArgsConstructor
 public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private Set<Pet> pet = new HashSet<>();
 
     @Column(nullable = false)
     private String name;
@@ -27,14 +36,6 @@ public class Account {
     @Column(nullable = false)
     private Role role;
 
-    @Builder
-    public Account(String name, String email, String picture, Role role) {
-        this.name = name;
-        this.email = email;
-        this.picture = picture;
-        this.role = role;
-    }
-
     public Account update(String name, String picture) {
         this.name = name;
         this.picture = picture;
@@ -45,4 +46,10 @@ public class Account {
     public String getRoleKey() {
         return this.role.getKey();
     }
+
+    public void addPet(Pet pet) {
+        this.pet.add(pet);
+        pet.setAccount(this);
+    }
+
 }
