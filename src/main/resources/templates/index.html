@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <title>Login</title>
-</head>
+<head th:replace="fragments.html :: head"></head>
 <style>
     h1, h2, h3, h4, span {
         text-align: center;
@@ -31,7 +26,6 @@
     .login-btn-text {
         font-weight: 700;
     }
-
 </style>
 <body class="container">
 <div>
@@ -41,6 +35,7 @@
             <h3 style="margin-bottom: 15px;">소중한 나의 반려묘<br> 건강관리 서비스</h3>
             <span>하나뿐인 나의 소중한 반려묘의 <br> 건강을 쉽고 편하게 관리해 보세요 !</span>
         </div>
+        <!--   유저 정보가 담겨있으면, 유저의 정보를 노출시켜줌     -->
         <div th:if="${userName}">
             <div>
                 <span> 이름 : </span><span th:text="${userName}"></span>
@@ -48,6 +43,7 @@
             <div>
                 <span> 이메일 : </span><span th:text="${userEmail}"></span>
             </div>
+            <a href="/pet-register">반려묘 등록</a>
         </div>
         <div>
             <a th:if="${userName}" href="/logout">로그아웃</a>
@@ -56,10 +52,8 @@
             <button class="login-btn-div" onclick="location.href='/oauth2/authorization/google'" ><img class="login-icon" src="/images/google_logo.png"/>   <span class="login-btn-text">구글 아이디</span> 로 로그인</button>
             <button class="login-btn-div" onclick="location.href='/oauth2/authorization/naver'" ><img class="login-icon" src="/images/naver_logo.png"/>   <span class="login-btn-text">네이버 아이디</span> 로 로그인</button>
         </div>
-        <a href="/pet-register">반려묘 등록</a>
-        <span style="font-size: 0.825rem; font-weight: 100;">회원가입 시 개인정보 처리방침과 이용약관을 확인하였으며, 동의합니다.</span>
+        <span style="font-size: 0.825rem; font-weight: 100;">회원가입 시 개인정보 처리방침과 이용약관을 확인하였으며, 이에 동의합니다.</span>
     </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </body>
 </html>

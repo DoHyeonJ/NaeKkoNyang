@@ -17,6 +17,7 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model) {
 
+        //현재는 Session에서 유저 정보를 가져옴 추후 변경예정
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         // 세션에 값이 있을때만 model 에 회원정보 담아주기

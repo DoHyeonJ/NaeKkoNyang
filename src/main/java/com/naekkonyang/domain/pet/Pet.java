@@ -1,13 +1,9 @@
 package com.naekkonyang.domain.pet;
 
 import com.naekkonyang.domain.user.Account;
-import com.naekkonyang.domain.user.Role;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Getter @Setter
@@ -36,6 +32,9 @@ public class Pet {
 
     @Column
     private String pet_type;
+
+    @Column
+    private String picture;
 
     public void addAccount(Account account) {
         Pet pet = new Pet();
