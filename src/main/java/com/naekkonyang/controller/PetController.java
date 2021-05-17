@@ -39,7 +39,26 @@ public class PetController {
         account.setId(user.getId());
         petService.registerPet(modelMapper.map(petForm, Pet.class), account);
 
-        return "pet/pet-register";
+        return "pet/pet-register-completed-view";
+    }
+
+    @GetMapping("/pet-register-completed-view")
+    public String petListView(Model model) {
+        return "pet/pet-register-completed-view";
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
