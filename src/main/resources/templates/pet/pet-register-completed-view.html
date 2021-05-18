@@ -5,7 +5,11 @@
       <div class="container">
           <div class="pet_list">
               <h2>펫 등록에 성공하였습니다 !</h2>
-              <span>안내문구 넣기</span>
+              <span>이름 :</span><div th:text="${pet.getPet_name()}"></div>
+              <span>생일 :</span><div th:text="${pet.getPet_birth()}"></div>
+              <span>중성화여부 :</span><div th:text="${pet.getPet_neutralize()}"></div>
+              <span>성별 :</span><div th:text="${pet.getPet_gender()}"></div>
+              <span>종류 :</span><div th:text="${pet.getPet_type()}"></div>
           </div>
       </div>
 </body>

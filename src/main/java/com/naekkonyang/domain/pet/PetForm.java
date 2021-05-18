@@ -1,8 +1,6 @@
 package com.naekkonyang.domain.pet;
 
-import com.sun.istack.NotNull;
 import lombok.Data;
-import lombok.NonNull;
 
 @Data
 public class PetForm {

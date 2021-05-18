@@ -13,7 +13,7 @@ public class Pet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long pet_id;
+    private Long id;
 
     @ManyToOne
     private Account account;
