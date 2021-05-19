@@ -53,6 +53,19 @@
         font-size: 30px;
         margin: 10px;
     }
+
+    .footer {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        padding: 15px 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    .footer-text {
+        font-size: 10px;
+    }
 </style>
 <body>
 
@@ -70,6 +83,13 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
 </div>
+
+<footer th:fragment="footer">
+    <div class="footer">
+        <span class="footer-text">Copyright 2021. dohyeonj. All rights reserved. /</span>
+        <span class="footer-text">jdh7693@naver.com</span>
+    </div>
+</footer>
 
 </body>
 </html>
