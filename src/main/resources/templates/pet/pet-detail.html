@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments.html :: head"></head>
+<style th:replace="fragments.html :: style-nomalrize"></style>
+<body>
+<nav th:replace="fragments.html :: main-nav"></nav>
+<div class="container">
+  <p th:text="${petDetail.pet_name}"></p>
+  <p th:text="${petDetail.pet_birth}"></p>
+  <p th:text="${petDetail.pet_gender}"></p>
+  <p th:text="${petDetail.pet_neutralize}"></p>
+  <p th:text="${petDetail.pet_type}"></p>
+</div>
+<footer th:replace="fragments.html :: footer"></footer>
+</body>
+</html>

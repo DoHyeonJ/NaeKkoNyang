@@ -12,7 +12,7 @@
       <div th:each="pet : ${petList}">
         <li class="list-group-item">
           <!-- TODO  펫 상세페이지로 이동 -->
-          <a href="#">
+          <a th:href="@{'/pet-detail/'+ ${pet.id}}">
             <span th:text="${pet.pet_name}"></span>
           </a>
         </li>

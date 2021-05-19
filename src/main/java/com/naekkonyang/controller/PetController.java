@@ -10,7 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -52,6 +54,7 @@ public class PetController {
         return "redirect:/pet-register-completed";
     }
 
+    //펫 등록 완료페이지
     @GetMapping("/pet-register-completed")
     public String petRegisterCompletedView(Model model, @RequestParam(value ="petInfo", required = false) Pet pet) {
         //리다이렉트 받아온 펫 객체 Service 거쳐서 정보 가져오기
@@ -62,6 +65,7 @@ public class PetController {
         return "pet/pet-register-completed-view";
     }
 
+    //펫 목록 페이지
     @GetMapping("/pet-list")
     public String petListView(Model model, Account account) {
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
@@ -71,6 +75,17 @@ public class PetController {
         model.addAttribute("petList", petRepository.findAllByAccount_Id(account.getId()));
 
         return "pet/pet-list";
+    }
+
+    //펫 상세 페이지
+    @GetMapping("/pet-detail/{id}")
+    public String petDetail(Account account, @PathVariable("id") Pet pet,Model model) {
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        account.setId(user.getId());
+
+        //펫 id와 회원 id 매핑하여 펫 정보 가져옴
+        model.addAttribute("petDetail", petRepository.findByIdAndAccount_Id(account.getId(), pet.getId()));
+        return "pet/pet-detail";
     }
 }
 

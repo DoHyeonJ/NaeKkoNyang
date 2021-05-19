@@ -19,8 +19,8 @@ com/naekkonyang/config/AppConfig.java
  com.naekkonyang.config.AppConfig
 com/naekkonyang/domain/account/AccountRepository.java
  com.naekkonyang.domain.account.AccountRepository
-com/naekkonyang/controller/PetController.java
- com.naekkonyang.controller.PetController
+com/naekkonyang/config/SecurityConfig.java
+ com.naekkonyang.config.SecurityConfig
 com/naekkonyang/domain/pet/PetForm.java
  com.naekkonyang.domain.pet.PetForm
 com/naekkonyang/config/CustomOAuth2UserService.java
@@ -33,5 +33,5 @@ com/naekkonyang/domain/pet/PetService.java
  com.naekkonyang.domain.pet.PetService
 com/naekkonyang/domain/pet/PetRepository.java
  com.naekkonyang.domain.pet.PetRepository
-com/naekkonyang/config/SecurityConfig.java
- com.naekkonyang.config.SecurityConfig
+com/naekkonyang/controller/PetController.java
+ com.naekkonyang.controller.PetController

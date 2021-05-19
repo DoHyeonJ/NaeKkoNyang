@@ -7,6 +7,7 @@
     .login-btn {
         text-align: center;
     }
+
     .login-btn-div {
         color: #737373;
         border-radius: 27px;
@@ -18,6 +19,7 @@
         margin: 15px auto;
         padding: 10px;
     }
+
     .login-icon {
         width: 20px;
     }
@@ -25,7 +27,6 @@
     .login-btn-text {
         font-weight: 700;
     }
-
 </style>
 <body>
 <nav th:replace="fragments.html :: main-nav"></nav>
@@ -51,12 +52,10 @@
 </div>
         </div>
         <div th:if="!${userName}" class="login-btn">
-            <button class="login-btn-div" onclick="location.href='/oauth2/authorization/google'"><img class="login-icon"
-                                                                                                      src="/images/google_logo.png"/>
+            <button class="login-btn-div" onclick="location.href='/oauth2/authorization/google'"><img class="login-icon" src="/images/google_logo.png"/>
                 <span class="login-btn-text">구글 아이디</span> 로 로그인
             </button>
-            <button class="login-btn-div" onclick="location.href='/oauth2/authorization/naver'"><img class="login-icon"
-                                                                                                     src="/images/naver_logo.png"/>
+            <button class="login-btn-div" onclick="location.href='/oauth2/authorization/naver'"><img class="login-icon" src="/images/naver_logo.png"/>
                 <span class="login-btn-text">네이버 아이디</span> 로 로그인
             </button>
             <span style="font-size: 0.825rem; font-weight: 100;">회원가입 시 개인정보 처리방침과 이용약관을 확인하였으며, 이에 동의합니다.</span>
