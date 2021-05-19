@@ -28,7 +28,9 @@
         margin-top: 10px;
     }
 </style>
+<style th:replace="fragments.html :: style-nomalrize"></style>
 <body>
+<nav th:replace="fragments.html :: main-nav"></nav>
     <div class="container">
         <div class="alert alert-info" role="alert" style="text-align: center;">이름은 필수항목입니다. 나머지 항목은 빈칸으로 등록하셔도됩니다. (추후 수정가능)</div>
         <form th:action="@{/pet-register}" th:object="${petForm}"method="POST">

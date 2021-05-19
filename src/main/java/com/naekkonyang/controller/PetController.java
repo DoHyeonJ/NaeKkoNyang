@@ -25,6 +25,7 @@ public class PetController {
     private final PetService petService;
     private final ModelMapper modelMapper;
     private final HttpSession httpSession;
+    private final PetRepository petRepository;
 
     //펫 등록 페이지 Get
     @GetMapping("/pet-register")
@@ -48,18 +49,28 @@ public class PetController {
 
         newPet = petService.registerPet(modelMapper.map(petForm, Pet.class), account);
         redirectAttributes.addAttribute("petInfo", newPet);
-        return "redirect:/pet-register-completed-view";
+        return "redirect:/pet-register-completed";
     }
 
-    @GetMapping("/pet-register-completed-view")
+    @GetMapping("/pet-register-completed")
     public String petRegisterCompletedView(Model model, @RequestParam(value ="petInfo", required = false) Pet pet) {
-
         //리다이렉트 받아온 펫 객체 Service 거쳐서 정보 가져오기
         Pet petInfo = petService.getPet(pet);
 
         model.addAttribute("pet", petInfo);
 
         return "pet/pet-register-completed-view";
+    }
+
+    @GetMapping("/pet-list")
+    public String petListView(Model model, Account account) {
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        account.setId(user.getId());
+
+        //회원 id에 매핑되는 펫 정보 List 뿌려줌
+        model.addAttribute("petList", petRepository.findAllByAccount_Id(account.getId()));
+
+        return "pet/pet-list";
     }
 }
 

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <title>내꼬냥</title>
 </head>
@@ -12,25 +13,63 @@
     h1, h2, h3, h4, span {
         text-align: center;
     }
+
     a {
         color: black;
     }
+
+    button {
+        background: inherit;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+        overflow: visible;
+        cursor: pointer
+    }
+
     a:hover {
         text-decoration: none;
     }
+
     a:link {
         text-decoration: none;
     }
+
     a:visited {
         text-decoration: none;
+    }
+
+    .main-nav {
+        height: 40px;
+    }
+
+    .glyphicon-menu-left {
+        margin: 10px;
+        font-size: 30px;
+    }
+
+    .glyphicon-menu-hamburger {
+        font-size: 30px;
+        margin: 10px;
     }
 </style>
 <body>
 
+<!-- 상단네비 -->
+<nav th:fragment="main-nav" class="main-nav">
+    <!-- 뒤로가기 버튼 -->
+    <button onclick="history.back();"><i class="glyphicon glyphicon-menu-left"></i></button>
+    <!-- 햄버거 메뉴 버튼 -->
+    <button style="float: right;"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
+</nav>
+
+<!-- datePicker 기본 스크립트 -->
 <div th:fragment="date-picker-script">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
 </div>
+
 </body>
 </html>

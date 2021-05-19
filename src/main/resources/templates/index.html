@@ -25,9 +25,11 @@
     .login-btn-text {
         font-weight: 700;
     }
+
 </style>
-<body class="container">
-<div>
+<body>
+<nav th:replace="fragments.html :: main-nav"></nav>
+<div class="container">
     <div style="text-align: center;">
         <div style="margin-bottom: 50px;">
             <h4 style="margin-bottom: 40px; margin-top: 40px; font-weight: 700;">내꼬냥</h4>
@@ -41,6 +43,7 @@
             </div>
             <div>
                 <a class="btn btn-default" href="/pet-register">반려묘 등록</a>
+                <a class="btn btn-default" href="/pet-list">반려묘 목록</a>
                 <a class="btn btn-default" th:if="${userName}" href="/logout">로그아웃</a>
             </div>
 <div style="margin-top: 15px;">
@@ -61,4 +64,10 @@
     </div>
 </div>
 </body>
+<script>
+    $(function () {
+        //메인화면 뒤로가기 버튼 숨김처리
+       $('.glyphicon-menu-left').hide();
+    });
+</script>
 </html>

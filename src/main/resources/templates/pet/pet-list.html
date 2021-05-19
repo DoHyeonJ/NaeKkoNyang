@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments.html :: head"></head>
+<style th:replace="fragments.html :: style-nomalrize"></style>
+<body>
+<nav th:replace="fragments.html :: main-nav"></nav>
+<div class="container">
+  <h3>반려묘 목록</h3>
+  <div class="pet_list">
+    <div th:if="${petList}">
+    <ul class="list-group">
+      <div th:each="pet : ${petList}">
+        <li class="list-group-item">
+          <!-- TODO  펫 상세페이지로 이동 -->
+          <a href="#">
+            <span th:text="${pet.pet_name}"></span>
+          </a>
+        </li>
+      </div>
+    </ul>
+    </div>
+    <div th:if="!${petList.size()}">
+      <p>등록된 반려묘가 없습니다. 반려묘를 등록해주세요</p>
+    </div>
+    <div>
+      <a class="btn btn-default" href="/">홈으로</a>
+      <a class="btn btn-default" href="/pet-register">반려묘 신규등록</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
