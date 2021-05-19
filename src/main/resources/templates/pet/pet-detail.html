@@ -2,14 +2,54 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments.html :: head"></head>
 <style th:replace="fragments.html :: style-nomalrize"></style>
+<style>
+    .pet_list {
+        margin-top: 20px;
+    }
+    .btn {
+        margin: 0 5px;
+    }
+</style>
 <body>
 <nav th:replace="fragments.html :: main-nav"></nav>
 <div class="container">
-  <p th:text="${petDetail.pet_name}"></p>
-  <p th:text="${petDetail.pet_birth}"></p>
-  <p th:text="${petDetail.pet_gender}"></p>
-  <p th:text="${petDetail.pet_neutralize}"></p>
-  <p th:text="${petDetail.pet_type}"></p>
+    <div class="pet_list">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div>
+                    <span>이름 : </span><span th:text="${petDetail.pet_name}"></span>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <span>생일 : </span><span th:text="${petDetail.pet_birth}"></span>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <span>중성화여부 : </span>
+                    <span th:if="${petDetail.pet_neutralize} == 'Y'">완료</span>
+                    <span th:if="${petDetail.pet_neutralize} == 'N'">안함</span>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <span>성별 : </span>
+                    <span th:if="${petDetail.pet_gender} == 'M'">수컷</span>
+                    <span th:if="${petDetail.pet_gender} == 'F'">암컷</span>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <span>종류 : </span><span th:text="${petDetail.pet_type}"></span>
+                </div>
+            </li>
+        </ul>
+        <div>
+            <a class="btn btn-default" href="/">홈으로</a>
+            <a class="btn btn-default" href="#">정보 수정</a>
+        </div>
+    </div>
 </div>
 <footer th:replace="fragments.html :: footer"></footer>
 </body>

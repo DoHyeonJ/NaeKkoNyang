@@ -13,36 +13,36 @@
 <body>
 <nav th:replace="fragments.html :: main-nav"></nav>
 <div class="container">
-    <h3>반려묘 등록에 성공하였습니다 !</h3>
+    <h4>반려묘 등록에 성공하였습니다 !</h4>
     <div class="pet_list">
         <ul class="list-group">
             <li class="list-group-item">
                 <div>
-                    <span>이름 : </span><span th:text="${pet.getPet_name()}"></span>
+                    <span>이름 : </span><span th:text="${pet.pet_name}"></span>
                 </div>
             </li>
             <li class="list-group-item">
                 <div>
-                    <span>생일 : </span><span th:text="${pet.getPet_birth()}"></span>
+                    <span>생일 : </span><span th:text="${pet.pet_birth}"></span>
                 </div>
             </li>
             <li class="list-group-item">
                 <div>
                     <span>중성화여부 : </span>
-                    <span th:if="${pet.getPet_neutralize()} == 'Y'">완료</span>
-                    <span th:if="${pet.getPet_neutralize()} == 'N'">안함</span>
+                    <span th:if="${pet.pet_neutralize} == 'Y'">완료</span>
+                    <span th:if="${pet.pet_neutralize} == 'N'">안함</span>
                 </div>
             </li>
             <li class="list-group-item">
                 <div>
                     <span>성별 : </span>
-                    <span th:if="${pet.getPet_gender()} == 'M'">수컷</span>
-                    <span th:if="${pet.getPet_gender()} == 'F'">암컷</span>
+                    <span th:if="${pet.pet_gender} == 'M'">수컷</span>
+                    <span th:if="${pet.pet_gender} == 'F'">암컷</span>
                 </div>
             </li>
             <li class="list-group-item">
                 <div>
-                    <span>종류 : </span><span th:text="${pet.getPet_type()}"></span>
+                    <span>종류 : </span><span th:text="${pet.pet_type}"></span>
                 </div>
             </li>
         </ul>
