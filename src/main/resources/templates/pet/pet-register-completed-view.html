@@ -1,16 +1,55 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments.html :: head"></head>
+<style th:replace="fragments.html :: style-nomalrize"></style>
+<style>
+    .pet_list {
+        margin-top: 20px;
+    }
+    .btn {
+        margin: 0 5px;
+    }
+</style>
 <body>
-      <div class="container">
-          <div class="pet_list">
-              <h2>펫 등록에 성공하였습니다 !</h2>
-              <span>이름 :</span><div th:text="${pet.getPet_name()}"></div>
-              <span>생일 :</span><div th:text="${pet.getPet_birth()}"></div>
-              <span>중성화여부 :</span><div th:text="${pet.getPet_neutralize()}"></div>
-              <span>성별 :</span><div th:text="${pet.getPet_gender()}"></div>
-              <span>종류 :</span><div th:text="${pet.getPet_type()}"></div>
-          </div>
-      </div>
+<div class="container">
+    <h3>반려묘 등록에 성공하였습니다 !</h3>
+    <div class="pet_list">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div>
+                    <span>이름 : </span><span th:text="${pet.getPet_name()}"></span>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <span>생일 : </span><span th:text="${pet.getPet_birth()}"></span>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <span>중성화여부 : </span>
+                    <span th:if="${pet.getPet_neutralize()} == 'Y'">완료</span>
+                    <span th:if="${pet.getPet_neutralize()} == 'N'">안함</span>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <span>성별 : </span>
+                    <span th:if="${pet.getPet_gender()} == 'M'">수컷</span>
+                    <span th:if="${pet.getPet_gender()} == 'F'">암컷</span>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <span>종류 : </span><span th:text="${pet.getPet_type()}"></span>
+                </div>
+            </li>
+        </ul>
+        <div>
+            <a class="btn btn-default" href="/">홈으로</a>
+            <a class="btn btn-default" href="/">반려묘 목록보기</a>
+        </div>
+    </div>
+</div>
 </body>
 </html>

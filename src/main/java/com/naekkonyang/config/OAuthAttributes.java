@@ -1,8 +1,8 @@
 package com.naekkonyang.config;
 
 
-import com.naekkonyang.domain.user.Account;
-import com.naekkonyang.domain.user.Role;
+import com.naekkonyang.domain.account.Account;
+import com.naekkonyang.domain.account.Role;
 import lombok.Builder;
 import lombok.Getter;
 import java.util.Map;

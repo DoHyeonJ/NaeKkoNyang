@@ -1,12 +1,10 @@
-package com.naekkonyang.domain.user;
+package com.naekkonyang.domain.account;
 
 
 import com.naekkonyang.domain.pet.Pet;
 import lombok.*;
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -19,15 +17,19 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //펫 정보 관계매핑
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private Set<Pet> pet = new HashSet<>();
 
+    // 이름
     @Column(nullable = false)
     private String name;
 
+    // 이메일
     @Column(nullable = false)
     private String email;
 
+    // 소셜로그인 시 땡겨오는 프로필 사진
     @Column
     private String picture;
 
@@ -36,6 +38,7 @@ public class Account {
     @Column(nullable = false)
     private Role role;
 
+    // 회원정보 갱신
     public Account update(String name, String picture) {
         this.name = name;
         this.picture = picture;
@@ -46,6 +49,7 @@ public class Account {
         return this.role.getKey();
     }
 
+    // 회원정보에 펫정보 추가
     public void addPet(Pet pet) {
         this.pet.add(pet);
         pet.setAccount(this);

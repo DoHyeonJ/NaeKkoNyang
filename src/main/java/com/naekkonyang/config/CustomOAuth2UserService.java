@@ -1,7 +1,7 @@
 package com.naekkonyang.config;
 
-import com.naekkonyang.domain.user.Account;
-import com.naekkonyang.domain.user.AccountRepository;
+import com.naekkonyang.domain.account.Account;
+import com.naekkonyang.domain.account.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;

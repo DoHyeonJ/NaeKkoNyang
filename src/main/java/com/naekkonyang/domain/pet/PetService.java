@@ -1,6 +1,6 @@
 package com.naekkonyang.domain.pet;
 
-import com.naekkonyang.domain.user.Account;
+import com.naekkonyang.domain.account.Account;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

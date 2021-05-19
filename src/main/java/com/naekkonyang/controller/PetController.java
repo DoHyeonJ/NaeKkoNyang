@@ -5,10 +5,9 @@ import com.naekkonyang.domain.pet.Pet;
 import com.naekkonyang.domain.pet.PetForm;
 import com.naekkonyang.domain.pet.PetRepository;
 import com.naekkonyang.domain.pet.PetService;
-import com.naekkonyang.domain.user.Account;
+import com.naekkonyang.domain.account.Account;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Controller
@@ -27,7 +25,6 @@ public class PetController {
     private final PetService petService;
     private final ModelMapper modelMapper;
     private final HttpSession httpSession;
-    private final PetRepository petRepository;
 
     //펫 등록 페이지 Get
     @GetMapping("/pet-register")

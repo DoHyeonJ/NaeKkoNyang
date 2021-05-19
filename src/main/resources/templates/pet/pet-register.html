@@ -33,10 +33,10 @@
         <div class="alert alert-info" role="alert" style="text-align: center;">이름은 필수항목입니다. 나머지 항목은 빈칸으로 등록하셔도됩니다. (추후 수정가능)</div>
         <form th:action="@{/pet-register}" th:object="${petForm}"method="POST">
             이름 : <input class="input_text" type="text" th:field="*{pet_name}" autocomplete="off"><br>
-            생일 : <input type="text" id="date" class="input_text" th:field="*{pet_birth}"  autocomplete="off"><br>
+            생일 : <input type="text" id="date" class="input_text" th:field="*{pet_birth}"  autocomplete="off" readonly><br>
             종류 : <input class="input_text" type="text" th:field="*{pet_type}" autocomplete="off"><br>
             <div class="radio_btn">
-            <span style="margin-left: -63px;">성별 :</span> 수컷 <input type="radio" name="pet_gender" th:field="*{pet_gender}" value="Y"> 암컷 <input type="radio" name="pet_gender" th:field="*{pet_gender}" value="N"><br>
+            <span style="margin-left: -63px;">성별 :</span> 수컷 <input type="radio" name="pet_gender" th:field="*{pet_gender}" value="M"> 암컷 <input type="radio" name="pet_gender" th:field="*{pet_gender}" value="F"><br>
             </div>
             <div class="radio_btn">
                 <span style="margin-left: -100px;">중성화여부 :</span>  예 <input type="radio" name="pet_neutralize" th:field="*{pet_neutralize}" value="Y" checked> 아니오 <input type="radio" name="pet_neutralize" th:field="*{pet_neutralize}" value="N"><br>

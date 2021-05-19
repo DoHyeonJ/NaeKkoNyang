@@ -4,7 +4,7 @@ package com.naekkonyang.config;
 import java.io.Serializable;
 
 
-import com.naekkonyang.domain.user.Account;
+import com.naekkonyang.domain.account.Account;
 import lombok.Getter;
 
 @Getter

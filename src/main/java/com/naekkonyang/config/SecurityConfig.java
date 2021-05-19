@@ -1,6 +1,6 @@
 package com.naekkonyang.config;
 
-import com.naekkonyang.domain.user.Role;
+import com.naekkonyang.domain.account.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;

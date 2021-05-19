@@ -1,4 +1,4 @@
-package com.naekkonyang.domain.user;
+package com.naekkonyang.domain.account;
 
 import lombok.*;
 

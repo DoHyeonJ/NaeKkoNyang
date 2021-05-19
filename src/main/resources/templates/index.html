@@ -2,10 +2,8 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments.html :: head"></head>
+<style th:replace="fragments.html :: style-nomalrize"></style>
 <style>
-    h1, h2, h3, h4, span {
-        text-align: center;
-    }
     .login-btn {
         text-align: center;
     }
@@ -23,6 +21,7 @@
     .login-icon {
         width: 20px;
     }
+
     .login-btn-text {
         font-weight: 700;
     }
@@ -38,21 +37,27 @@
         <!--   유저 정보가 담겨있으면, 유저의 정보를 노출시켜줌     -->
         <div th:if="${userName}">
             <div>
-                <span> 이름 : </span><span th:text="${userName}"></span>
+                <p>환영합니다 <span th:text="${userName}" style="font-weight: 600;"></span> 님</p>
             </div>
             <div>
-                <span> 이메일 : </span><span th:text="${userEmail}"></span>
+                <a class="btn btn-default" href="/pet-register">반려묘 등록</a>
+                <a class="btn btn-default" th:if="${userName}" href="/logout">로그아웃</a>
             </div>
-            <a href="/pet-register">반려묘 등록</a>
-        </div>
-        <div>
-            <a th:if="${userName}" href="/logout">로그아웃</a>
+<div style="margin-top: 15px;">
+    <a class="user-information" href="#" th:alt="노션링크">사용자 안내 확인 -></a>
+</div>
         </div>
         <div th:if="!${userName}" class="login-btn">
-            <button class="login-btn-div" onclick="location.href='/oauth2/authorization/google'" ><img class="login-icon" src="/images/google_logo.png"/>   <span class="login-btn-text">구글 아이디</span> 로 로그인</button>
-            <button class="login-btn-div" onclick="location.href='/oauth2/authorization/naver'" ><img class="login-icon" src="/images/naver_logo.png"/>   <span class="login-btn-text">네이버 아이디</span> 로 로그인</button>
+            <button class="login-btn-div" onclick="location.href='/oauth2/authorization/google'"><img class="login-icon"
+                                                                                                      src="/images/google_logo.png"/>
+                <span class="login-btn-text">구글 아이디</span> 로 로그인
+            </button>
+            <button class="login-btn-div" onclick="location.href='/oauth2/authorization/naver'"><img class="login-icon"
+                                                                                                     src="/images/naver_logo.png"/>
+                <span class="login-btn-text">네이버 아이디</span> 로 로그인
+            </button>
+            <span style="font-size: 0.825rem; font-weight: 100;">회원가입 시 개인정보 처리방침과 이용약관을 확인하였으며, 이에 동의합니다.</span>
         </div>
-        <span style="font-size: 0.825rem; font-weight: 100;">회원가입 시 개인정보 처리방침과 이용약관을 확인하였으며, 이에 동의합니다.</span>
     </div>
 </div>
 </body>
