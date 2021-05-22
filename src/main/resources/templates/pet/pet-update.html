@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments.html :: head"></head>
+<style th:replace="fragments.html :: style-nomalrize"></style>
+<style>
+    .pet_list {
+        margin-top: 20px;
+    }
+
+    .btn {
+        margin: 0 5px;
+    }
+</style>
+<body>
+<nav th:replace="fragments.html :: main-nav"></nav>
+<div class="container">
+    <div class="pet_list">
+        <form th:action="@{/pet-update}" th:object="${petForm}" method="POST">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div>
+                        <span>이름 : </span><input th:field="*{pet_name}">
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div>
+                        <span>생일 : </span><input th:field="*{pet_birth}">
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div>
+                        <span>중성화여부 : </span>
+                        <input type="radio" th:field="*{pet_neutralize}" value="Y"
+                               th:checked="*{pet_neutralize == 'Y'}">완료
+                        <input type="radio" th:field="*{pet_neutralize}" value="N"
+                               th:checked="*{pet_neutralize == 'N'}">안함
+                        <input type="radio" th:field="*{pet_neutralize}" value="tmp"
+                               th:checked="*{pet_neutralize == 'tmp'}">알수없음
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div>
+                        <span>성별 : </span>
+                        <input type="radio" th:field="*{pet_gender}" value="M"
+                               th:checked="*{pet_gender == 'M'}">수컷
+                        <input type="radio" th:field="*{pet_gender}" value="F"
+                               th:checked="*{pet_gender == 'F'}">암컷
+                        <input type="radio" th:field="*{pet_gender}" value="tmp"
+                               th:checked="*{pet_gender == 'tmp'}">알수없음
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div>
+                        <span>종류 : </span><input th:field="*{pet_birth}">
+                    </div>
+                </li>
+            </ul>
+            <a class="btn btn-default" href="/">홈으로</a>
+            <button class="btn btn-default" type="submit">정보 수정</button>
+        </form>
+    </div>
+</div>
+<footer th:replace="fragments.html :: footer"></footer>
+</body>
+</html>
