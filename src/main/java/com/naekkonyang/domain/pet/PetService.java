@@ -32,6 +32,16 @@ public class PetService {
     //펫 정보 회원 id로 조회
     public List getPetList(Account account) {
         List<Pet> petList =  petRepository.findAllByAccount_idOrderByIdAsc(account.getId());
+
+        //삭제된 펫은 제외
+        for (int i=0; i<petList.size();) {
+            if (petList.get(i).getDeleteYN().equals("Y")) {
+                petList.remove(i);
+            } else {
+                i++;
+            }
+        }
+
         return petList;
     }
 

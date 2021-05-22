@@ -98,10 +98,25 @@ public class PetController {
     public String petUpdateSubmit(@PathVariable("id") Pet pet, @Valid PetForm petForm,
                                   RedirectAttributes redirectAttributes) {
 
-        petService.updatePet(pet, petForm);
 
+        petService.updatePet(pet, petForm);
         redirectAttributes.addAttribute("petInfo", pet);
+
+        //펫을 삭제할 경우
+        if (petForm.getPet_deleteYN().equals("Y")) {
+            return "redirect:/pet-delete-completed";
+        }
+
         return "redirect:/pet-register-completed";
+    }
+
+    //펫 삭제 완료 페이지
+    @GetMapping("/pet-delete-completed")
+    public String petDeleteCompleted(@RequestParam(value ="petInfo", required = false) Pet pet, Model model) {
+
+        model.addAttribute("petInfo",pet);
+
+        return "pet/pet-delete-completed";
     }
 }
 

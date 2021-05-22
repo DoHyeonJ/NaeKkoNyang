@@ -17,4 +17,5 @@ public class PetForm {
 
     private String pet_type;
 
+    private String pet_deleteYN = "N";
 }

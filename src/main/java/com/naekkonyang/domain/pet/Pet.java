@@ -46,7 +46,7 @@ public class Pet {
 
     // 펫 정보 삭제 유무
     @Column
-    private String deleteYN = "N";
+    private String deleteYN;
 
     // 펫 정보에 회원정보 추가
     public void addAccount(Account account) {
