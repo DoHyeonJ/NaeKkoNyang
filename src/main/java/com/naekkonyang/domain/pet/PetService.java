@@ -31,13 +31,14 @@ public class PetService {
 
     //펫 정보 회원 id로 조회
     public List getPetList(Account account) {
-        List<Pet> petList =  petRepository.findAllByAccount_Id(account.getId());
+        List<Pet> petList =  petRepository.findAllByAccount_idOrderByIdAsc(account.getId());
         return petList;
     }
 
     //펫 정보 수정
-    public void updatePet(PetForm petForm, Account account) {
-
+    public void updatePet(Pet pet, PetForm petForm) {
+        modelMapper.map(petForm, pet);
+        petRepository.save(pet);
     }
 
 }

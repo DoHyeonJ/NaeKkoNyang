@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class PetForm {
 
+    private Long id;
+
     private String pet_name;
 
     private String pet_birth;

@@ -23,17 +23,17 @@ com/naekkonyang/domain/account/AccountRepository.java
  com.naekkonyang.domain.account.AccountRepository
 com/naekkonyang/controller/IndexController.java
  com.naekkonyang.controller.IndexController
-com/naekkonyang/domain/pet/PetForm.java
- com.naekkonyang.domain.pet.PetForm
-com/naekkonyang/config/CustomOAuth2UserService.java
- com.naekkonyang.config.CustomOAuth2UserService
-com/naekkonyang/domain/pet/PetRepository.java
- com.naekkonyang.domain.pet.PetRepository
-com/naekkonyang/ServletInitializer.java
- com.naekkonyang.ServletInitializer
 com/naekkonyang/domain/account/Role.java
  com.naekkonyang.domain.account.Role
+com/naekkonyang/config/CustomOAuth2UserService.java
+ com.naekkonyang.config.CustomOAuth2UserService
+com/naekkonyang/domain/pet/PetForm.java
+ com.naekkonyang.domain.pet.PetForm
+com/naekkonyang/ServletInitializer.java
+ com.naekkonyang.ServletInitializer
 com/naekkonyang/domain/pet/PetService.java
  com.naekkonyang.domain.pet.PetService
+com/naekkonyang/domain/pet/PetRepository.java
+ com.naekkonyang.domain.pet.PetRepository
 com/naekkonyang/controller/PetController.java
  com.naekkonyang.controller.PetController

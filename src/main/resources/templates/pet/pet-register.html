@@ -58,22 +58,6 @@
         </form> <br>
     </div>
     <div th:replace="fragments.html :: date-picker-script"></div>
-    <script type="text/javascript">
-        $(function(){
-            $("#date").datepicker({
-                //기본 포맷
-                dateFormat: 'yy년 mm월 dd일',
-                //년도 선택 셀렉트 박스 노출
-                changeYear: true,
-                //월 선택 셀렉트 박스 노출
-                changeMonth: true,
-                //요일 한국어 표시
-                dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
-                //월 한국어 표시
-                monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
-            })
-        });
-    </script>
 </body>
 <footer th:replace="fragments.html :: footer"></footer>
 </html>

@@ -38,7 +38,8 @@ public class PetController {
 
     //펫 등록 페이지 Post
     @PostMapping("/pet-register")
-    public String petRegisterSubmit(Account account, @Valid PetForm petForm, RedirectAttributes redirectAttributes) {
+    public String petRegisterSubmit(Account account, @Valid PetForm petForm,
+                                    RedirectAttributes redirectAttributes) {
 
         //펫 타입의 변수를 선언하고 저장된 펫 객체 리다이렉트 시켜줌
         Pet newPet = new Pet();
@@ -93,9 +94,13 @@ public class PetController {
     }
 
     //펫 수정 페이지 Post
-    @PostMapping("/pet-update")
-    public String petUpdateSubmit(@Valid PetForm petForm, RedirectAttributes redirectAttributes) {
+    @PostMapping("/pet-update/{id}")
+    public String petUpdateSubmit(@PathVariable("id") Pet pet, @Valid PetForm petForm,
+                                  RedirectAttributes redirectAttributes) {
 
+        petService.updatePet(pet, petForm);
+
+        redirectAttributes.addAttribute("petInfo", pet);
         return "redirect:/pet-register-completed";
     }
 }

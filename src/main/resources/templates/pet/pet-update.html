@@ -15,7 +15,7 @@
 <nav th:replace="fragments.html :: main-nav"></nav>
 <div class="container">
     <div class="pet_list">
-        <form th:action="@{/pet-update}" th:object="${petForm}" method="POST">
+        <form th:action="@{'/pet-update/' + ${petForm.id}}" th:object="${petForm}" method="POST">
             <ul class="list-group">
                 <li class="list-group-item">
                     <div>
@@ -24,7 +24,7 @@
                 </li>
                 <li class="list-group-item">
                     <div>
-                        <span>생일 : </span><input th:field="*{pet_birth}">
+                        <span>생일 : </span><input id="date"  th:field="*{pet_birth}" autocomplete="off" readonly>
                     </div>
                 </li>
                 <li class="list-group-item">
@@ -51,7 +51,7 @@
                 </li>
                 <li class="list-group-item">
                     <div>
-                        <span>종류 : </span><input th:field="*{pet_birth}">
+                        <span>종류 : </span><input th:field="*{pet_type}">
                     </div>
                 </li>
             </ul>
@@ -60,6 +60,7 @@
         </form>
     </div>
 </div>
+<div th:replace="fragments.html :: date-picker-script"></div>
 <footer th:replace="fragments.html :: footer"></footer>
 </body>
 </html>

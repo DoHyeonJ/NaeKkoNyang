@@ -13,8 +13,8 @@
 <body>
 <nav th:replace="fragments.html :: main-nav"></nav>
 <div class="container">
-    <div class="pet_list">
-        <ul class="list-group" th:object="${petForm}">
+    <div class="pet_list" th:object="${petForm}">
+        <ul class="list-group">
             <li class="list-group-item">
                 <div>
                     <span>이름 : </span><span th:text="*{pet_name}"></span>
@@ -47,7 +47,7 @@
         </ul>
         <div>
             <a class="btn btn-default" href="/">홈으로</a>
-            <a class="btn btn-default" href="#" th:href="@{'/pet-update/'+ *{id}}">정보 수정</a>
+            <a class="btn btn-default" href="#" th:href="*{'/pet-update/'+ id}">정보 수정</a>
         </div>
     </div>
 </div>
