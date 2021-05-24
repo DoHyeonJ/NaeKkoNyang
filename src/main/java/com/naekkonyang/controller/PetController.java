@@ -98,7 +98,6 @@ public class PetController {
     public String petUpdateSubmit(@PathVariable("id") Pet pet, @Valid PetForm petForm,
                                   RedirectAttributes redirectAttributes) {
 
-
         petService.updatePet(pet, petForm);
         redirectAttributes.addAttribute("petInfo", pet);
 
