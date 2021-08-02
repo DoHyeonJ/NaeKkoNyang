@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments.html :: head"></head>
+<style th:replace="fragments.html :: style-nomalrize"></style>
+<style>
+ .dl-th {
+    width: 30%;
+    text-align: center;
+  }
+ .dl-tr {
+ height: 50px;
+ }
+</style>
 <body>
-$END$
+<nav th:replace="fragments.html :: main-nav"></nav>
+<div class="container">
+  <h3>일기장 목록</h3>
+<div>
+      <table>
+        <div th:each="diary : ${diaryList}">
+        <a th:href="@{'/diary-detail/'+ ${diary.id}}">
+          <tr class="dl-tr">
+            <th class="dl-th">
+              @1
+            </th>
+              <td>
+                가장 좋아하는 간식 주기
+              </td>
+          </tr>
+        </a>
+        </div>
+      </table>
+</div>
+</div>
 </body>
+<script>
+
+</script>
+<footer th:replace="fragments.html :: footer"></footer>
 </html>

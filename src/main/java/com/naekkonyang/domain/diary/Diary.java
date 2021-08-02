@@ -1,2 +1,44 @@
-package com.naekkonyang.domain.diary;public class Diary {
+package com.naekkonyang.domain.diary;
+
+import com.naekkonyang.domain.account.Account;
+import com.naekkonyang.domain.pet.Pet;
+import lombok.*;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Getter
+@Setter
+@EqualsAndHashCode(of = "id")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class Diary {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    // 일기 순번
+    @Column(nullable = false)
+    private int num;
+
+    // 일기 제목
+    @Column(nullable = false)
+    private String title;
+
+    // 일기 내용
+    @Column
+    private String content;
+
+    // 업로드 사진
+    @Column
+    private String picture;
+
+    // 펫정보 관계매핑
+    @ManyToOne
+    private Pet pet;
+
 }

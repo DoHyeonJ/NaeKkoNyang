@@ -1,0 +1,6 @@
+{
+  "type": "nodule",
+  "dependencies": {
+    "cropperjs": "^1.5.12"
+  },
+}

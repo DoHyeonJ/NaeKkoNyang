@@ -5,7 +5,7 @@
 <body>
 <nav th:replace="fragments.html :: main-nav"></nav>
 <div class="container">
-    <h3>반려묘 목록</h3>
+    <h3>반려동물 목록</h3>
     <div class="pet_list">
         <div th:if="${petList}">
             <ul class="list-group">
@@ -20,11 +20,11 @@
             </ul>
         </div>
         <div th:if="!${petList.size()}">
-            <p>등록된 반려묘가 없습니다. 반려묘를 등록해주세요</p>
+            <p>등록된 반려동물이 없습니다. 반려동물을 등록해주세요</p>
         </div>
         <div>
             <a class="btn btn-default" href="/">홈으로</a>
-            <a class="btn btn-default" href="/pet-register">반려묘 신규등록</a>
+            <a class="btn btn-default" href="/pet-register">반려동물 신규등록</a>
         </div>
     </div>
 </div>

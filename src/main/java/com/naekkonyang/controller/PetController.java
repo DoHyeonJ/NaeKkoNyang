@@ -20,8 +20,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-@RequiredArgsConstructor
 @Controller
+@RequiredArgsConstructor
 public class PetController {
 
     private final PetService petService;

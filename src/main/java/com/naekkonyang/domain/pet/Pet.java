@@ -1,10 +1,12 @@
 package com.naekkonyang.domain.pet;
 
 import com.naekkonyang.domain.account.Account;
+import com.naekkonyang.domain.diary.Diary;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter @Setter
@@ -53,5 +55,9 @@ public class Pet {
         Pet pet = new Pet();
         pet.setAccount(account);
     }
+
+    //일기 정보 관계매핑
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL)
+    private Set<Diary> diaries = new HashSet<>();
 
 }

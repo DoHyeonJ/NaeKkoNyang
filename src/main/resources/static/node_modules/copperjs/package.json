@@ -1,0 +1,20 @@
+{
+  "name": "copperjs",
+  "version": "1.0.1",
+  "description": "copperjs is a JavaScript library for creating user interfaces.",
+  "main": "./lib/dom.js",
+  "scripts": {
+    "compile": "babel src --out-dir lib"
+  },
+  "author": "Harish S.G",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "~7.11.1",
+    "babel-loader": "~8.1.0",
+    "webpack": "^4.44.1"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1"
+  }
+}
