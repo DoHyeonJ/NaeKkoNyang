@@ -5,12 +5,12 @@
 <style>
 </style>
 <body>
-<nav th:replace="fragments.html :: main-nav"></nav>
 <div class="container">
+  <nav th:replace="fragments.html :: main-nav"></nav>
   <h4>반려묘 삭제에 성공하였습니다 !</h4>
   <span>삭제된 반려묘 : </span> <span th:text="${petInfo.pet_name}"></span>
   <p>실수로 지웠거나 복구가 필요한경우 메일로 연락주세요.</p>
+  <footer th:replace="fragments.html :: footer"></footer>
 </div>
-</body>
-<footer th:replace="fragments.html :: footer"></footer>
+</body>s
 </html>

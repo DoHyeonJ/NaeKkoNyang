@@ -12,10 +12,10 @@
  }
 </style>
 <body>
-<nav th:replace="fragments.html :: main-nav"></nav>
+
 <div class="container">
+  <nav th:replace="fragments.html :: main-nav"></nav>
   <h3>일기장 목록</h3>
-<div>
       <table>
         <div th:each="diary : ${diaryList}">
         <a th:href="@{'/diary-detail/'+ ${diary.id}}">
@@ -30,11 +30,11 @@
         </a>
         </div>
       </table>
-</div>
+  <footer th:replace="fragments.html :: footer"></footer>
 </div>
 </body>
 <script>
 
 </script>
-<footer th:replace="fragments.html :: footer"></footer>
+
 </html>

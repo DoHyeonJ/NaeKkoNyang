@@ -10,9 +10,9 @@
         margin: 0 5px;
     }
 </style>
-<body>
-<nav th:replace="fragments.html :: main-nav"></nav>
+<body>s
 <div class="container">
+    <footer th:replace="fragments.html :: footer"></footer>
     <h4>반려동물 등록에 성공하였습니다 !</h4>
     <div class="pet_list">
         <ul class="list-group">
@@ -51,7 +51,8 @@
             <a class="btn btn-default" href="/pet-list">반려동물 목록</a>
         </div>
     </div>
+    <footer th:replace="fragments.html :: footer"></footer>
 </div>
 </body>
-<footer th:replace="fragments.html :: footer"></footer>
+
 </html>

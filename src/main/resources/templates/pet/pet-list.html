@@ -3,8 +3,8 @@
 <head th:replace="fragments.html :: head"></head>
 <style th:replace="fragments.html :: style-nomalrize"></style>
 <body>
-<nav th:replace="fragments.html :: main-nav"></nav>
 <div class="container">
+    <nav th:replace="fragments.html :: main-nav"></nav>
     <h3>반려동물 목록</h3>
     <div class="pet_list">
         <div th:if="${petList}">
@@ -27,6 +27,7 @@
             <a class="btn btn-default" href="/pet-register">반려동물 신규등록</a>
         </div>
     </div>
+    <footer th:replace="fragments.html :: footer"></footer>
 </div>
 </body>
 <script>
@@ -43,5 +44,4 @@
         $('.pet-birth').text((today.getFullYear() - birth) + 1);
     }
 </script>
-<footer th:replace="fragments.html :: footer"></footer>
 </html>

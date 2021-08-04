@@ -11,8 +11,8 @@
     }
 </style>
 <body>
-<nav th:replace="fragments.html :: main-nav"></nav>
 <div class="container">
+    <nav th:replace="fragments.html :: main-nav"></nav>
     <div class="pet_list" th:object="${petForm}">
         <ul class="list-group">
             <li class="list-group-item">
@@ -50,7 +50,7 @@
             <a class="btn btn-default" href="#" th:href="*{'/pet-update/'+ id}">정보 수정</a>
         </div>
     </div>
+    <footer th:replace="fragments.html :: footer"></footer>
 </div>
-<footer th:replace="fragments.html :: footer"></footer>
 </body>
 </html>

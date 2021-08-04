@@ -12,8 +12,8 @@
     }
 </style>
 <body>
-<nav th:replace="fragments.html :: main-nav"></nav>
 <div class="container">
+    <nav th:replace="fragments.html :: main-nav"></nav>
     <div class="pet_list">
         <form th:action="@{'/pet-update/' + ${petForm.id}}" th:object="${petForm}" method="POST">
             <ul class="list-group">
@@ -59,12 +59,12 @@
             <a class="btn btn-default" href="/">홈으로</a>
             <button id="update-pet" class="btn btn-default" type="submit">정보 수정</button>
             <a class="btn btn-danger" onclick="delete_pet();">삭제하기</a>
-        </form>
-
+        </form>s
     </div>
+    <nav th:replace="fragments.html :: main-nav"></nav>
 </div>
 <div th:replace="fragments.html :: date-picker-script"></div>
-<footer th:replace="fragments.html :: footer"></footer>
+x
 <script>
     function delete_pet () {
         const con = confirm('정말로 삭제하시겠습니까?');
