@@ -16,19 +16,15 @@
 <div class="container">
   <nav th:replace="fragments.html :: main-nav"></nav>
   <h3>일기장 목록</h3>
-      <table>
-        <div th:each="diary : ${diaryList}">
-        <a th:href="@{'/diary-detail/'+ ${diary.id}}">
-          <tr class="dl-tr">
+      <table th:each="diary : ${diaryList}">
+          <tr class="dl-tr" th:href="@{'/diary-detail/'+ ${diary.id}}">
             <th class="dl-th">
-              @1
+              # <span th:text="${diary.num}"></span>
             </th>
               <td>
-                가장 좋아하는 간식 주기
+                <span th:text="${diary.title}"></span>
               </td>
           </tr>
-        </a>
-        </div>
       </table>
   <footer th:replace="fragments.html :: footer"></footer>
 </div>

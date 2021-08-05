@@ -1,6 +1,7 @@
 package com.naekkonyang.domain.pet;
 
 import com.naekkonyang.domain.account.Account;
+import com.naekkonyang.domain.diary.DiaryService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -14,12 +15,14 @@ public class PetService {
 
     private final PetRepository petRepository;
     private final ModelMapper modelMapper;
+    private final DiaryService diaryService;
 
     //펫 정보 신규 등록
     public Pet registerPet(Pet pet, Account account) {
         account.addPet(pet);
         pet.addAccount(account);
         petRepository.save(pet);
+        diaryService.insertFirstDiary(pet);
         return pet;
     }
 
@@ -30,7 +33,7 @@ public class PetService {
     }
 
     //펫 정보 회원 id로 조회
-    public List getPetList(Account account) {
+    public List<Pet> getPetList(Account account) {
         List<Pet> petList =  petRepository.findAllByAccount_idOrderByIdAsc(account.getId());
 
         //삭제된 펫은 제외

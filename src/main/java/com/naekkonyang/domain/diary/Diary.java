@@ -37,8 +37,18 @@ public class Diary {
     @Column
     private String picture;
 
+    // 일기 댓글
+    @Column
+    private String reply;
+
     // 펫정보 관계매핑
     @ManyToOne
     private Pet pet;
+
+    // 펫 정보 추가
+    public void addPet(Pet pet) {
+        Diary diary = new Diary();
+        diary.setPet(pet);
+    }
 
 }

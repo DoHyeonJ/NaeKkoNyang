@@ -60,4 +60,10 @@ public class Pet {
     @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL)
     private Set<Diary> diaries = new HashSet<>();
 
+    // 펫 정보에 일기정보 추가
+    public void addDiary(Diary diary) {
+        this.diaries.add(diary);
+        diary.setPet(this);
+    }
+
 }

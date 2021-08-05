@@ -1,18 +1,25 @@
 package com.naekkonyang.controller;
 
+import com.naekkonyang.config.SessionUser;
+import com.naekkonyang.domain.account.Account;
 import com.naekkonyang.domain.diary.DiaryService;
 import com.naekkonyang.domain.pet.Pet;
+import com.naekkonyang.domain.pet.PetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequiredArgsConstructor
 public class DiaryController {
 
     private final DiaryService diaryService;
+    private final HttpSession httpSession;
+    private final PetService petService;
 
     @GetMapping("/diary-list/{id}")
     public String diaryList(Model model, @PathVariable("id") Pet pet) {
@@ -28,6 +35,15 @@ public class DiaryController {
     @GetMapping("/diary-detail")
     public String diaryDetail() {
         return "diary/diary-detail";
+    }
+
+    @GetMapping("/diary-petList")
+    public String diaryPetList(Model model, Account account) {
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        account.setId(user.getId());
+
+        model.addAttribute("petList", petService.getPetList(account));
+        return "diary/diary-petList";
     }
 
 }
