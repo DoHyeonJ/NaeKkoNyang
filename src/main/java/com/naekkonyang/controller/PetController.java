@@ -87,8 +87,7 @@ public class PetController {
         account.setId(user.getId());
 
         // 펫 권한여부 조회 권한없을시 리스트로 리다이렉트
-        List<Pet> petList = petService.checkAccount(account, pet);
-        if(petList.isEmpty()) { return "redirect:/pet-list";}
+        if(petService.checkAccount(account, pet)) { return "redirect:/pet-list";}
 
         model.addAttribute(modelMapper.map(pet, PetForm.class));
         return "pet/pet-detail";
@@ -102,8 +101,7 @@ public class PetController {
         account.setId(user.getId());
 
         // 펫 권한여부 조회 권한없을시 리스트로 리다이렉트
-        List<Pet> petList = petService.checkAccount(account, pet);
-        if(petList.isEmpty()) { return "redirect:/pet-list";}
+        if(petService.checkAccount(account, pet)) { return "redirect:/pet-list";}
 
         model.addAttribute(modelMapper.map(pet, PetForm.class));
         return "pet/pet-update";
@@ -118,8 +116,7 @@ public class PetController {
         account.setId(user.getId());
 
         // 펫 권한여부 조회 권한없을시 리스트로 리다이렉트
-        List<Pet> petList = petService.checkAccount(account, pet);
-        if(petList.isEmpty()) { return "redirect:/pet-list";}
+        if(petService.checkAccount(account, pet)) { return "redirect:/pet-list";}
 
         petService.updatePet(pet, petForm);
         redirectAttributes.addAttribute("petInfo", pet);

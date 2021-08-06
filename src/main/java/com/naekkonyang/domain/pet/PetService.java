@@ -55,9 +55,13 @@ public class PetService {
     }
 
     //펫 권한 확인
-    public List<Pet> checkAccount(Account account, Pet pet) {
+    public boolean checkAccount(Account account, Pet pet) {
         List<Pet> petList = petRepository.findByAccount_idAndId(account.getId(), pet.getId());
-        return petList;
+
+        if (petList.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
 }

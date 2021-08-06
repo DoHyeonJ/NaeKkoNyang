@@ -1,9 +1,13 @@
 package com.naekkonyang.domain.diary;
 
+import com.naekkonyang.config.SessionUser;
+import com.naekkonyang.domain.account.Account;
 import com.naekkonyang.domain.pet.Pet;
+import com.naekkonyang.domain.pet.PetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -11,6 +15,8 @@ import java.util.List;
 public class DiaryService {
 
     private final DiaryRepository diaryRepository;
+    private final PetRepository petRepository;
+    private final HttpSession httpSession;
 
     //일기 정보 펫 id로 조회
     public List<Diary> getDiaryList(Pet pet) {
@@ -30,4 +36,16 @@ public class DiaryService {
         return "";
     }
 
+    // 일기 권한 여부 체크
+    public boolean checkAccount(Diary diary) {
+        Diary pet = diaryRepository.findByPet_id(diary.getId());
+        Pet account = petRepository.findByAccount_id(pet.getId());
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+
+        if (user.getId().equals(account.getId())) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -2,6 +2,7 @@ package com.naekkonyang.controller;
 
 import com.naekkonyang.config.SessionUser;
 import com.naekkonyang.domain.account.Account;
+import com.naekkonyang.domain.diary.Diary;
 import com.naekkonyang.domain.diary.DiaryService;
 import com.naekkonyang.domain.pet.Pet;
 import com.naekkonyang.domain.pet.PetService;
@@ -29,8 +30,7 @@ public class DiaryController {
         account.setId(user.getId());
 
         // 펫 권한여부 조회 권한없을시 리스트로 리다이렉트
-        List<Pet> petList = petService.checkAccount(account, pet);
-        if(petList.isEmpty()) { return "redirect:/";}
+        if(petService.checkAccount(account, pet)) { return "redirect:/pet-list";}
 
         model.addAttribute("diaryList", diaryService.getDiaryList(pet));
         return "diary/diary-list";
@@ -41,8 +41,11 @@ public class DiaryController {
         return "diary/diary-registration";
     }
 
-    @GetMapping("/diary-detail")
-    public String diaryDetail() {
+    @GetMapping("/diary-detail/{id}")
+    public String diaryDetail(@PathVariable("id") Diary diary) {
+        if (diaryService.checkAccount(diary)) {
+            return "redirect:/diary-petList";
+        }
         return "diary/diary-detail";
     }
 
