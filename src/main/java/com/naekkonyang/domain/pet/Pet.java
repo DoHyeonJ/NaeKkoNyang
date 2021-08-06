@@ -1,5 +1,6 @@
 package com.naekkonyang.domain.pet;
 
+import com.naekkonyang.domain.BaseTimeEntity;
 import com.naekkonyang.domain.account.Account;
 import com.naekkonyang.domain.diary.Diary;
 import lombok.*;
@@ -12,7 +13,7 @@ import java.util.Set;
 @Getter @Setter
 @EqualsAndHashCode(of = "id")
 @Builder @AllArgsConstructor @NoArgsConstructor
-public class Pet {
+public class Pet extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

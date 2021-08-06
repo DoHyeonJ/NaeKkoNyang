@@ -4,14 +4,16 @@ package com.naekkonyang.domain.account;
 import com.naekkonyang.domain.pet.Pet;
 import lombok.*;
 import javax.persistence.*;
+import java.time.DateTimeException;
 import java.util.HashSet;
 import java.util.Set;
+import com.naekkonyang.domain.BaseTimeEntity;
 
 @Entity
 @Getter @Setter
 @EqualsAndHashCode(of = "id")
 @Builder @AllArgsConstructor @NoArgsConstructor
-public class Account {
+public class Account extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

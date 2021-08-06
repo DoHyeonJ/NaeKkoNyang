@@ -1,5 +1,6 @@
 package com.naekkonyang.domain.diary;
 
+import com.naekkonyang.domain.BaseTimeEntity;
 import com.naekkonyang.domain.account.Account;
 import com.naekkonyang.domain.pet.Pet;
 import lombok.*;
@@ -15,7 +16,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Diary {
+public class Diary extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
