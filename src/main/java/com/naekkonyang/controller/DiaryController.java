@@ -42,10 +42,12 @@ public class DiaryController {
     }
 
     @GetMapping("/diary-detail/{id}")
-    public String diaryDetail(@PathVariable("id") Diary diary) {
+    public String diaryDetail(@PathVariable("id") Diary diary, Model model) {
         if (diaryService.checkAccount(diary)) {
             return "redirect:/diary-petList";
         }
+
+        model.addAttribute("diary", diary);
         return "diary/diary-detail";
     }
 
