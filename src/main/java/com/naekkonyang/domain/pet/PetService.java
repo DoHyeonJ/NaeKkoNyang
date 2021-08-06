@@ -54,4 +54,10 @@ public class PetService {
         petRepository.save(pet);
     }
 
+    //펫 권한 확인
+    public List<Pet> checkAccount(Account account, Pet pet) {
+        List<Pet> petList = petRepository.findByAccount_idAndId(account.getId(), pet.getId());
+        return petList;
+    }
+
 }

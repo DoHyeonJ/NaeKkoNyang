@@ -19,6 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -79,7 +81,14 @@ public class PetController {
 
     //펫 상세 페이지
     @GetMapping("/pet-detail/{id}")
-    public String petDetail(@PathVariable("id") Pet pet,Model model) {
+    public String petDetail(@PathVariable("id") Pet pet,Model model, Account account) {
+
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        account.setId(user.getId());
+
+        // 펫 권한여부 조회 권한없을시 리스트로 리다이렉트
+        List<Pet> petList = petService.checkAccount(account, pet);
+        if(petList.isEmpty()) { return "redirect:/pet-list";}
 
         model.addAttribute(modelMapper.map(pet, PetForm.class));
         return "pet/pet-detail";
@@ -87,7 +96,14 @@ public class PetController {
 
     //펫 수정 페이지
     @GetMapping("/pet-update/{id}")
-    public String petUpdate(@PathVariable("id") Pet pet, Model model) {
+    public String petUpdate(@PathVariable("id") Pet pet, Model model, Account account) {
+
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        account.setId(user.getId());
+
+        // 펫 권한여부 조회 권한없을시 리스트로 리다이렉트
+        List<Pet> petList = petService.checkAccount(account, pet);
+        if(petList.isEmpty()) { return "redirect:/pet-list";}
 
         model.addAttribute(modelMapper.map(pet, PetForm.class));
         return "pet/pet-update";
@@ -95,8 +111,15 @@ public class PetController {
 
     //펫 수정 페이지 Post
     @PostMapping("/pet-update/{id}")
-    public String petUpdateSubmit(@PathVariable("id") Pet pet, @Valid PetForm petForm,
+    public String petUpdateSubmit(@PathVariable("id") Pet pet, @Valid PetForm petForm, Account account,
                                   RedirectAttributes redirectAttributes) {
+
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        account.setId(user.getId());
+
+        // 펫 권한여부 조회 권한없을시 리스트로 리다이렉트
+        List<Pet> petList = petService.checkAccount(account, pet);
+        if(petList.isEmpty()) { return "redirect:/pet-list";}
 
         petService.updatePet(pet, petForm);
         redirectAttributes.addAttribute("petInfo", pet);
