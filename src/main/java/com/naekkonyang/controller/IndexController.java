@@ -1,6 +1,7 @@
 package com.naekkonyang.controller;
 
 import com.naekkonyang.config.SessionUser;
+import com.naekkonyang.domain.diary.DiaryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

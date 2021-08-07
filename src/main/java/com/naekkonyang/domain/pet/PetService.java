@@ -19,10 +19,13 @@ public class PetService {
 
     //펫 정보 신규 등록
     public Pet registerPet(Pet pet, Account account) {
-        account.addPet(pet);
-        pet.addAccount(account);
-        petRepository.save(pet);
-        diaryService.insertFirstDiary(pet);
+        try {
+            account.addPet(pet);
+            pet.addAccount(account);
+            petRepository.save(pet);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return pet;
     }
 
@@ -50,8 +53,12 @@ public class PetService {
 
     //펫 정보 수정
     public void updatePet(Pet pet, PetForm petForm) {
-        modelMapper.map(petForm, pet);
-        petRepository.save(pet);
+        try {
+            modelMapper.map(petForm, pet);
+            petRepository.save(pet);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //펫 권한 확인

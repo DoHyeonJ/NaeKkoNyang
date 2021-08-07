@@ -24,7 +24,7 @@ public class Diary extends BaseTimeEntity {
 
     // 일기 순번
     @Column(nullable = false)
-    private int num;
+    private Long num;
 
     // 일기 제목
     @Column(nullable = false)

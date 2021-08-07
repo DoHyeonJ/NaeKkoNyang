@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,12 +24,13 @@ public class DiaryController {
 
     @GetMapping("/diary-list/{id}")
     public String diaryList(Model model, @PathVariable("id") Pet pet, Account account) {
-
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
         account.setId(user.getId());
 
         // 펫 권한여부 조회 권한없을시 리스트로 리다이렉트
         if(petService.checkAccount(account, pet)) { return "redirect:/pet-list";}
+
+        diaryService.checkNewDiary(pet);
 
         model.addAttribute("diaryList", diaryService.getDiaryList(pet));
         return "diary/diary-list";
