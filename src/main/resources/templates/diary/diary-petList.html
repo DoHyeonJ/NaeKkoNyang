@@ -3,10 +3,6 @@
 <head th:replace="fragments.html :: head"></head>
 <style th:replace="fragments.html :: style-nomalrize"></style>
 <style>
-    .dl-th {
-        width: 30%;
-        text-align: center;
-    }
     .dl-tr {
         height: 50px;
     }
@@ -16,13 +12,10 @@
     <nav th:replace="fragments.html :: main-nav"></nav>
     <h3>펫 목록</h3>
     <table th:each="pet : ${petList}">
-            <tr class="dl-tr" >
-                <th class="dl-th">
-                    # <span>1</span>
-                </th>
+            <tr class="dl-tr">
                 <td>
                     <a th:href="@{'/diary-list/'+ ${pet.id}}">
-                    <span th:text="${pet.pet_name}"></span>
+                    # <span th:text="${pet.pet_name}"></span>
                     </a>
                 </td>
             </tr>

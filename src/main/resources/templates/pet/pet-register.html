@@ -29,7 +29,7 @@
 <body>
     <div class="container">
         <nav th:replace="fragments.html :: main-nav"></nav>
-        <div class="alert alert-info" role="alert" style="text-align: center;">이름은 필수항목입니다. 나머지 항목은 빈칸으로 등록하셔도됩니다. (추후 수정가능)</div>
+        <div class="alert alert-info" role="alert" style="text-align: center;">이름은 필수항목입니다.</div>
         <form th:action="@{/pet-register}" th:object="${petForm}"method="POST">
             이름 : <input class="input_text" type="text" th:field="*{pet_name}" autocomplete="off"><br>
             생일 : <input type="text" id="date" class="input_text" th:field="*{pet_birth}"  autocomplete="off" readonly><br>
@@ -41,13 +41,13 @@
                 암컷 <input type="radio" name="pet_gender" th:field="*{pet_gender}" value="F">
                 알수없음 <input type="radio" name="pet_gender" th:field="*{pet_gender}" value="tmp"><br>
             </div>
-            <div class="radio_btn">
-                <span>
-                    중성화여부 :</span>
-                예 <input type="radio" name="pet_neutralize" th:field="*{pet_neutralize}" value="Y">
-                아니오 <input type="radio" name="pet_neutralize" th:field="*{pet_neutralize}" value="N">
-                알수없음 <input type="radio" name="pet_neutralize" th:field="*{pet_neutralize}" value="tmp"><br>
-            </div>
+<!--            <div class="radio_btn">-->
+<!--                <span>-->
+<!--                    중성화여부 :</span>-->
+<!--                예 <input type="radio" name="pet_neutralize" th:field="*{pet_neutralize}" value="Y">-->
+<!--                아니오 <input type="radio" name="pet_neutralize" th:field="*{pet_neutralize}" value="N">-->
+<!--                알수없음 <input type="radio" name="pet_neutralize" th:field="*{pet_neutralize}" value="tmp"><br>-->
+<!--            </div>-->
             <input id="deleteYN" type="hidden" th:field="*{pet_deleteYN}">
             <div class="footer_btn">
                 <a class="btn btn-default" href="/">홈으로</a>
