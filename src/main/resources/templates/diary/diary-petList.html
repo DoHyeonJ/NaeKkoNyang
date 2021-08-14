@@ -11,14 +11,14 @@
 <div class="container">
     <nav th:replace="fragments.html :: main-nav"></nav>
     <h3>펫 목록</h3>
-    <table th:each="pet : ${petList}">
-            <tr class="dl-tr">
-                <td>
-                    <a th:href="@{'/diary-list/'+ ${pet.id}}">
-                    # <span th:text="${pet.pet_name}"></span>
-                    </a>
-                </td>
-            </tr>
+    <table>
+        <tr class="dl-tr" th:each="pet : ${petList}">
+            <td>
+                <a th:href="@{'/diary-list/'+ ${pet.id}}">
+                # <span th:text="${pet.pet_name}"></span>
+                </a>
+            </td>
+        </tr>
     </table>
     <footer th:replace="fragments.html :: footer"></footer>
 </div>

@@ -6,22 +6,74 @@
 <div class="container">
     <nav th:replace="fragments.html :: main-nav"></nav>
     <h3>일기장 보기</h3>
-    <div th:object="${diary}">
-        <div>
-            <span>제목 : </span><span th:text="*{title}"></span>
+        <div th:object="${diary}">
+            <input id="diary-id" type="hidden" th:value="*{id}">
+            <div>
+                <span>등록일 : </span><span th:text="*{#temporals.format(createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+            </div>
+            <div th:if="*{!createdDate.equals(modifiedDate)}">
+                <span>수정일 : </span><span th:text="*{#temporals.format(modifiedDate, 'yyyy-MM-dd HH:mm')}"></span>
+            </div>
+            <div>
+                <span>제목 : </span><span th:text="*{title}"></span>
+            </div>
+            <div>
+                <span>내용 : </span><span th:text="*{content}"></span>
+            </div>
+            <div>
+                <span>댓글 : </span><input type="text" th:id="reply" placeholder="댓글을 입력해주세요" th:value="*{reply}">
+            </div>
+            <div>
+
+                <span>사진 : </span><input type="file" th:id="picture" th:value="*{picture}">
+            </div>
+            <div>
+                <img id="imgArea" src="">
+            </div>
+            <div>
+                <input type="button" onclick="uploadFile()" th:value="수정">
+            </div>
         </div>
-        <div>
-            <span>내용 : </span><span th:text="*{content}"></span>
-        </div>
-        <div>
-            <span>메모 : </span><span th:text="*{reply}"></span>
-        </div>
-    </div>
+
+    <input id="upload" name="img" type="file" th:value="사진업로드" accept="jpge"/>
+
     <footer th:replace="fragments.html :: footer"></footer>
 </div>
 </body>
-<script>
+<script type="text/javascript">
+    function uploadFile() {
+        const fileInput = document.getElementById("upload");
+        const upload = (file) => {
+            if (file && file.size < 5000000) {
+                const formData = new FormData();
 
+                formData.append("image", file);
+                fetch("https://api.imgur.com/3/image", {
+                    method: "POST",
+                    headers: {
+                        Authorization: "Client-ID c69f193f9abc941",
+                        Accept: "application/json",
+                    },
+                    body: formData,
+                })
+                    .then((response) => response.json())
+                    .then((response) => {
+                        console.log(response);
+                        // do Something
+                    });
+            } else {
+                console.error("파일 용량 초과");
+            }
+        };
+
+        fileInput &&
+        fileInput.addEventListener("change", () => {
+            upload(fileInput.files[0]);
+        });
+    }
+
+    uploadFile();
 </script>
+
 
 </html>

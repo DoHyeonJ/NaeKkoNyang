@@ -16,8 +16,8 @@
 <div class="container">
   <nav th:replace="fragments.html :: main-nav"></nav>
   <h3>일기장 목록</h3>
-      <table th:each="diary : ${diaryList}">
-          <tr class="dl-tr">
+      <table>
+          <tr class="dl-tr" th:each="diary : ${diaryList}">
             <th class="dl-th">
               # <span th:text="${diary.num}"></span>
             </th>

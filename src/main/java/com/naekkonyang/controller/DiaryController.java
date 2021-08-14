@@ -3,16 +3,20 @@ package com.naekkonyang.controller;
 import com.naekkonyang.config.SessionUser;
 import com.naekkonyang.domain.account.Account;
 import com.naekkonyang.domain.diary.Diary;
+import com.naekkonyang.domain.diary.DiaryForm;
 import com.naekkonyang.domain.diary.DiaryService;
 import com.naekkonyang.domain.pet.Pet;
 import com.naekkonyang.domain.pet.PetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.tags.Param;
 
 import javax.servlet.http.HttpSession;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,7 +36,10 @@ public class DiaryController {
 
         diaryService.checkNewDiary(pet);
 
-        model.addAttribute("diaryList", diaryService.getDiaryList(pet));
+        List<Diary> diaryList = diaryService.getDiaryList(pet);
+        Collections.reverse(diaryList);
+
+        model.addAttribute("diaryList", diaryList);
         return "diary/diary-list";
     }
 
@@ -48,6 +55,13 @@ public class DiaryController {
         }
 
         model.addAttribute("diary", diary);
+        return "diary/diary-detail";
+    }
+
+    @PostMapping("/diary-update/{id}")
+    public String diaryDetailUpdate(@PathVariable("id") Diary diary, Model model) {
+
+        diaryService.updateDiary(diary);
         return "diary/diary-detail";
     }
 

@@ -3,6 +3,7 @@ package com.naekkonyang.domain.diary;
 import com.naekkonyang.config.SessionUser;
 import com.naekkonyang.domain.account.Account;
 import com.naekkonyang.domain.pet.Pet;
+import com.naekkonyang.domain.pet.PetForm;
 import com.naekkonyang.domain.pet.PetRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -14,6 +15,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.tomcat.jni.Local;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -32,6 +34,7 @@ public class DiaryService {
     private final PetRepository petRepository;
     private final HttpSession httpSession;
     private final DiaryModuleRepository diaryModuleRepository;
+    private final ModelMapper modelMapper;
     private static final String FILE_PATH = "src/main/resources/static/diaryList.xlsx";
 
     //일기 정보 펫 id로 조회
@@ -101,6 +104,15 @@ public class DiaryService {
         }
 
         return "ok";
+    }
+
+    // 다이어리 정보 update
+    public void updateDiary(Diary diary) {
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
