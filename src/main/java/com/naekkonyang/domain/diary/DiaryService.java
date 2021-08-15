@@ -6,14 +6,6 @@ import com.naekkonyang.domain.pet.Pet;
 import com.naekkonyang.domain.pet.PetForm;
 import com.naekkonyang.domain.pet.PetRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.tomcat.jni.Local;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -90,7 +82,6 @@ public class DiaryService {
 
     // 다이어리 정보 insert
     public String insertDiary(Pet pet, DiaryModule diaryModule) {
-
         try {
             Diary diary = new Diary();
             diary.addPet(pet);
@@ -107,9 +98,10 @@ public class DiaryService {
     }
 
     // 다이어리 정보 update
-    public void updateDiary(Diary diary) {
+    public void updateDiary(Diary diary, DiaryForm diaryForm) {
         try {
-
+            modelMapper.map(diaryForm, diary);
+            diaryRepository.save(diary);
         } catch (Exception e) {
             e.printStackTrace();
         }

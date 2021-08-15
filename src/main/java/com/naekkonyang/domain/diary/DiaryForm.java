@@ -1,6 +1,10 @@
 package com.naekkonyang.domain.diary;
 
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.time.LocalDateTime;
 
 @Data
 public class DiaryForm {
@@ -16,5 +20,9 @@ public class DiaryForm {
     private String picture;
 
     private String reply;
+
+    private LocalDateTime createdDate;
+
+    private LocalDateTime modifiedDate;
 
 }

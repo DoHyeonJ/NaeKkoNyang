@@ -6,8 +6,10 @@ import com.naekkonyang.domain.diary.Diary;
 import com.naekkonyang.domain.diary.DiaryForm;
 import com.naekkonyang.domain.diary.DiaryService;
 import com.naekkonyang.domain.pet.Pet;
+import com.naekkonyang.domain.pet.PetForm;
 import com.naekkonyang.domain.pet.PetService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +27,7 @@ public class DiaryController {
     private final DiaryService diaryService;
     private final HttpSession httpSession;
     private final PetService petService;
+    private final ModelMapper modelMapper;
 
     @GetMapping("/diary-list/{id}")
     public String diaryList(Model model, @PathVariable("id") Pet pet, Account account) {
@@ -54,14 +57,14 @@ public class DiaryController {
             return "redirect:/diary-petList";
         }
 
-        model.addAttribute("diary", diary);
+        model.addAttribute(modelMapper.map(diary, DiaryForm.class));
         return "diary/diary-detail";
     }
 
     @PostMapping("/diary-update/{id}")
-    public String diaryDetailUpdate(@PathVariable("id") Diary diary, Model model) {
+    public String diaryDetailUpdate(@PathVariable("id") Diary diary,DiaryForm diaryForm) {
 
-        diaryService.updateDiary(diary);
+        diaryService.updateDiary(diary, diaryForm);
         return "diary/diary-detail";
     }
 
