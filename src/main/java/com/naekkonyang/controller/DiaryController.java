@@ -65,7 +65,7 @@ public class DiaryController {
     public String diaryDetailUpdate(@PathVariable("id") Diary diary,DiaryForm diaryForm) {
 
         diaryService.updateDiary(diary, diaryForm);
-        return "diary/diary-detail";
+        return "redirect:/diary-detail/" + diary.getId();
     }
 
     @GetMapping("/diary-petList")

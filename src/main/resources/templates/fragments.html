@@ -10,6 +10,15 @@
     <title>내꼬냥</title>
 </head>
 <style th:fragment="style-nomalrize">
+    @font-face {
+        font-family: 'IM_Hyemin-Bold';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Bold.woff2') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    body {
+        font-family: '카페24 써라운드', 'IM_Hyemin-Bold', IM_Hyemin-Bold;
+    }
     h1, h2, h3, h4, span {
         text-align: center;
     }
@@ -86,22 +95,34 @@
     }
 
     .main-nav {
-        margin-bottom: 20px;
+        margin-bottom: 45px;
     }
 
     .glyphicon-menu-left {
         margin-left: 0;
     }
 
+    #main_logo {
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .menu-group {
+        position: fixed;
+        bottom: 60px;
+        width: 100%;
+    }
 </style>
 <body>
 
 <!-- 상단네비 -->
 <nav th:fragment="main-nav" class="main-nav">
     <!-- 뒤로가기 버튼 -->
-    <button onclick="history.back();"><i class="glyphicon glyphicon-menu-left"></i></button>
+<!--    <button onclick="history.back();"><i class="glyphicon glyphicon-menu-left"></i></button>-->
     <!-- 햄버거 메뉴 버튼 -->
 <!--    <button style="float: right;"><i class="glyphicon glyphicon-menu-hamburger"></i></button>-->
+    <div id="main_logo"><img style="width: 190px; margin-top: 15px;" src="/images/main_logo3.png" alt="main_logo"></div>
+
 </nav>
 
 <!-- datePicker 기본 스크립트 -->
@@ -126,7 +147,12 @@
         });
     </script>
 </div>
-
+<div class="menu-group" th:fragment="menu-group">
+    <span>하단 메뉴(홈)</span>
+    <span>하단 메뉴(펫)</span>
+    <span>하단 메뉴(일기)</span>
+    <span>하단 메뉴(설정)</span>
+</div>
 <footer th:fragment="footer">
     <div class="footer">
         <span class="footer-text">Copyright 2021. dohyeonj. All rights reserved. /</span>

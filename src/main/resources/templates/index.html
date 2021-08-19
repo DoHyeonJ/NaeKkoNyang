@@ -28,29 +28,53 @@
         font-weight: 700;
     }
 
+    .main_contents {
+        height: 100px;
+        text-align: right;
+        margin-top: 85px;
+    }
+
+    .pet-days {
+        display: inline-block;
+        /*box-shadow: 2px 2px 1px 1px;*/
+        /*border: 1px solid;*/
+        padding: 10px;
+    }
+
+    .diary_notification {
+        position: fixed;
+        bottom: 125px;
+        width: 90%;
+        color: brown;
+        text-align: center;
+    }
+
+    .pet-days-str {
+        font-size: 20px;
+    }
 </style>
 <body>
 <div class="container">
     <nav th:replace="fragments.html :: main-nav"></nav>
-    <div style="text-align: center;">
-        <div style="margin-bottom: 30px;">
-            <h3 style="margin-bottom: 40px; margin-top: 40px; font-weight: 700;">내꼬냥</h3>
-            <h4 style="margin-bottom: 15px;">반려동물 일기</h4>
-            <span>하나뿐인 나의 소중한 반려동물의 <br> 기록을 쉽고 편하게 관리해 보세요 !</span>
+    <div>
+        <div class="main_contents">
+                <div th:each="pet : ${petList}">
+                    <p class="pet-days"><span th:text="${pet.pet_name}"></span>와 함께한지 <span class="pet-days-str" th:text="${pet.pet_days}">︎</span>일 ❤</p>
+                </div>
         </div>
         <!--   유저 정보가 담겨있으면, 유저의 정보를 노출시켜줌     -->
         <div th:if="${userName}" class="main-menu-box">
-            <div>
-                <p>환영합니다 <span th:text="${userName}" style="font-weight: 600;"></span> 님</p>
+            <div class="diary_notification">
+                <div>일기를 작성해 주세요</div>
             </div>
-            <div>
-                <a class="btn btn-default" href="/pet-register">반려동물 등록</a>
-                <a class="btn btn-default" href="/pet-list">반려동물 목록</a>
-                <a class="btn btn-default" th:if="${userName}" href="/logout">로그아웃</a>
-            </div>
-            <div style="margin-top: 10px;">
-                <a style=" width: 50%;" class="btn btn-default" href="/diary-petList">일기장</a>
-            </div>
+<!--            <div>-->
+<!--                <a class="btn btn-default" href="/pet-register">반려동물 등록</a>-->
+<!--                <a class="btn btn-default" href="/pet-list">반려동물 목록</a>-->
+<!--                <a class="btn btn-default" th:if="${userName}" href="/logout">로그아웃</a>-->
+<!--            </div>-->
+<!--            <div style="margin-top: 10px;">-->
+<!--                <a style=" width: 50%;" class="btn btn-default" href="/diary-petList">일기장</a>-->
+<!--            </div>-->
 <!--<div style="margin-top: 15px;">-->
 <!--    <a class="user-information" href="#" th:alt="노션링크">사용자 안내 확인 -></a>-->
 <!--</div>-->
@@ -64,6 +88,7 @@
             </button>
             <span style="font-size: 0.825rem; font-weight: 100;">회원가입 시 개인정보 처리방침과 이용약관을 확인하였으며, 이에 동의합니다.</span>
         </div>
+        <footer th:replace="fragments.html :: menu-group"></footer>
     </div>
     <footer th:replace="fragments.html :: footer"></footer>
 </div>

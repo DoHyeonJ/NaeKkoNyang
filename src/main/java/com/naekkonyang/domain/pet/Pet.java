@@ -51,6 +51,10 @@ public class Pet extends BaseTimeEntity {
     @Column
     private String deleteYN;
 
+    // 펫과 함께한 날짜
+    @Column
+    private Long pet_days;
+
     // 펫 정보에 회원정보 추가
     public void addAccount(Account account) {
         Pet pet = new Pet();
