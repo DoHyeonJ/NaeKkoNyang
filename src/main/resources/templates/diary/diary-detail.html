@@ -28,7 +28,10 @@
                 </div>
                 <input id="imgLink" type="hidden" th:field="*{picture}">
                 <input id="upload" name="img" type="file" value="" accept="jpge,png,jpg"/>
-                <div>
+                <div class="btn btn-default">
+                    <a onclick="history.back();">목록으로</a>
+                </div>
+                <div class="btn btn-default">
                     <a onclick="submitData()">수정</a>
                 </div>
                 <input type="hidden" th:field="*{num}">
@@ -36,6 +39,7 @@
                 <input type="hidden" th:field="*{title}">
             </form>
         </div>
+    <div th:replace="fragments.html :: menu-group"></div>
     <footer th:replace="fragments.html :: footer"></footer>
 </div>
 </body>

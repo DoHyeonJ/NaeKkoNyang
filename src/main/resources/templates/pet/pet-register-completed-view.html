@@ -28,13 +28,6 @@
             </li>
             <li class="list-group-item">
                 <div>
-                    <span>중성화여부 : </span>
-                    <span th:if="${pet.pet_neutralize} == 'Y'">완료</span>
-                    <span th:if="${pet.pet_neutralize} == 'N'">안함</span>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div>
                     <span>성별 : </span>
                     <span th:if="${pet.pet_gender} == 'M'">수컷</span>
                     <span th:if="${pet.pet_gender} == 'F'">암컷</span>
@@ -51,6 +44,7 @@
             <a class="btn btn-default" href="/pet-list">반려동물 목록</a>
         </div>
     </div>
+    <div th:replace="fragments.html :: menu-group"></div>
     <footer th:replace="fragments.html :: footer"></footer>
 </div>
 </body>

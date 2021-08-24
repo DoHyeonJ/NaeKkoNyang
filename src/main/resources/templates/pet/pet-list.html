@@ -2,6 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments.html :: head"></head>
 <style th:replace="fragments.html :: style-nomalrize"></style>
+<style>
+    .list-group-item {
+        margin-bottom: 5px !important;
+    }
+</style>
 <body>
 <div class="container">
     <nav th:replace="fragments.html :: main-nav"></nav>
@@ -9,7 +14,7 @@
     <div class="pet_list">
         <div th:if="${petList}">
             <ul class="list-group">
-                <div th:each="pet : ${petList}">
+                <div class="pet-list" th:each="pet : ${petList}">
                     <a th:href="@{'/pet-detail/'+ ${pet.id}}">
                         <li class="list-group-item">
                             <span th:text="${pet.pet_name}"></span> /
@@ -27,6 +32,7 @@
             <a class="btn btn-default" href="/pet-register">반려동물 신규등록</a>
         </div>
     </div>
+    <div th:replace="fragments.html :: menu-group"></div>
     <footer th:replace="fragments.html :: footer"></footer>
 </div>
 </body>
@@ -37,11 +43,12 @@
 
     //펫 나이 계산
     function petAgeCheck () {
-        //문자열이므로 앞에 년도만 잘라주기
-        const birth = $('.pet-birth').text().substring(0, 4);
-        const today = new Date();
-
-        $('.pet-birth').text((today.getFullYear() - birth) + 1);
+        $('.pet-list').each(function () {
+            //문자열이므로 앞에 년도만 잘라주기
+            const birth = $(this).find('.pet-birth').text().substring(0, 4);
+            const today = new Date();
+            $(this).find('.pet-birth').text((today.getFullYear() - birth) + 1);
+        });
     }
 </script>
 </html>

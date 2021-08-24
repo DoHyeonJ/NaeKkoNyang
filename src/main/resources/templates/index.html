@@ -2,7 +2,6 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments.html :: head"></head>
-<style th:replace="fragments.html :: style-nomalrize"></style>
 <style>
     .login-btn {
         text-align: center;
@@ -43,16 +42,25 @@
 
     .diary_notification {
         position: fixed;
-        bottom: 125px;
-        width: 90%;
+        bottom: 65px;
+        width: 100%;
         color: brown;
         text-align: center;
+        left: 0;
     }
 
     .pet-days-str {
         font-size: 20px;
     }
+
+    @media (min-width: 768px) {
+        .menu-group, .diary_notification {
+            width: 500px;
+            left: auto;
+        }
+    }
 </style>
+<style th:replace="fragments.html :: style-nomalrize"></style>
 <body>
 <div class="container">
     <nav th:replace="fragments.html :: main-nav"></nav>
@@ -88,7 +96,7 @@
             </button>
             <span style="font-size: 0.825rem; font-weight: 100;">회원가입 시 개인정보 처리방침과 이용약관을 확인하였으며, 이에 동의합니다.</span>
         </div>
-        <footer th:replace="fragments.html :: menu-group"></footer>
+        <div th:replace="fragments.html :: menu-group"></div>
     </div>
     <footer th:replace="fragments.html :: footer"></footer>
 </div>

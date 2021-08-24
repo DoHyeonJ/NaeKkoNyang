@@ -38,14 +38,13 @@ public class DiaryService {
     // 일기 권한 여부 체크
     public boolean checkAccount(Diary diary) {
         Diary pet = diaryRepository.findAllById(diary.getId()); // 다이어리 정보 추출
-        Pet account = petRepository.findAllByAccount_id(pet.getPet().getId()); // 추출한 다이어리 정보 통해서 펫정보 추출
+        Pet account = petRepository.findAllById(pet.getPet().getId()); // 추출한 다이어리 정보 통해서 펫정보 추출
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         // 추출한 id 값과 세션값 비교 ( 불일치시 false )
-        if (user.getId().equals(account.getId())) {
+        if (user.getId().equals(account.getAccount().getId())) {
             return false;
         }
-
         return true;
     }
 

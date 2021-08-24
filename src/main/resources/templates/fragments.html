@@ -109,8 +109,31 @@
 
     .menu-group {
         position: fixed;
-        bottom: 60px;
+        bottom: 0;
         width: 100%;
+        left: 0;
+        padding-top: 0;
+        background: white;
+    }
+
+    .menu-button {
+        display: inline-block;
+        width: 24%;
+        text-align: center;
+        height: 40px;
+        vertical-align: middle;
+        padding-top: 13px;
+    }
+
+    @media (min-width: 768px) {
+        .menu-group{
+            width: 500px;
+            left: auto;
+        }
+    }
+
+    .container {
+        padding-bottom: 50px;
     }
 </style>
 <body>
@@ -121,7 +144,7 @@
 <!--    <button onclick="history.back();"><i class="glyphicon glyphicon-menu-left"></i></button>-->
     <!-- 햄버거 메뉴 버튼 -->
 <!--    <button style="float: right;"><i class="glyphicon glyphicon-menu-hamburger"></i></button>-->
-    <div id="main_logo"><img style="width: 190px; margin-top: 15px;" src="/images/main_logo3.png" alt="main_logo"></div>
+    <a href="/"><div id="main_logo"><img style="width: 190px;" src="/images/main_logo4.png" alt="main_logo"></div></a>
 
 </nav>
 
@@ -148,16 +171,15 @@
     </script>
 </div>
 <div class="menu-group" th:fragment="menu-group">
-    <span>하단 메뉴(홈)</span>
-    <span>하단 메뉴(펫)</span>
-    <span>하단 메뉴(일기)</span>
-    <span>하단 메뉴(설정)</span>
+    <a href="/"><div class="menu-button">HOME</div></a>
+    <a href="/pet-list"><div class="menu-button">PET</div></a>
+    <a href="/diary-petList"><div class="menu-button">DIARY</div></a>
 </div>
 <footer th:fragment="footer">
-    <div class="footer">
-        <span class="footer-text">Copyright 2021. dohyeonj. All rights reserved. /</span>
-        <span class="footer-text">jdh7693@naver.com</span>
-    </div>
+<!--    <div class="footer">-->
+<!--&lt;!&ndash;        <span class="footer-text">Copyright 2021. dohyeonj. All rights reserved. /</span>&ndash;&gt;-->
+<!--&lt;!&ndash;        <span class="footer-text">jdh7693@naver.com</span>&ndash;&gt;-->
+<!--    </div>-->
 </footer>
 
 </body>

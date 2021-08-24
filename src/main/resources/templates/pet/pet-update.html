@@ -56,11 +56,12 @@
                 </li>
             </ul>
             <input id="deleteYN" type="hidden" th:field="*{pet_deleteYN}">
-            <a class="btn btn-default" href="/">홈으로</a>
+            <a class="btn btn-default" onclick="history.back();">취소</a>
             <button id="update-pet" class="btn btn-default" type="submit">정보 수정</button>
             <a class="btn btn-danger" onclick="delete_pet();">삭제하기</a>
         </form>
     </div>
+    <div th:replace="fragments.html :: menu-group"></div>
 </div>
 <div th:replace="fragments.html :: date-picker-script"></div>
 <script>
