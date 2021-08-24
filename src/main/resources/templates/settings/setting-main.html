@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments.html :: head"></head>
+<style th:replace="fragments.html :: style-nomalrize"></style>
+<style>
+</style>
+<body>
+<div class="container">
+  <nav th:replace="fragments.html :: main-nav"></nav>
+  <h3>Settings</h3>
+  <div class="settings_list" th:object="${user}">
+      <ul class="list-group">
+            <li class="list-group-item">
+              Name : <p th:text="${user.getName()}"></p>
+            </li>
+            <li class="list-group-item">
+              Email : <p th:text="${user.getEmail()}"></p>
+            </li>
+      </ul>
+  </div>
+  <div th:replace="fragments.html :: menu-group"></div>
+  <footer th:replace="fragments.html :: footer"></footer>
+</div>
+</body>
+<script>
+</script>
+</html>
