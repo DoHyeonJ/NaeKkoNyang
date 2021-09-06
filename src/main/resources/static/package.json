@@ -1,6 +1,7 @@
 {
   "type": "nodule",
   "dependencies": {
-    "cropperjs": "^1.5.12"
-  },
+    "cropperjs": "^1.5.12",
+    "jq-fakeloader": "^2.0.1"
+  }
 }

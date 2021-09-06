@@ -2,6 +2,7 @@ package com.naekkonyang.controller;
 
 import com.naekkonyang.config.SessionUser;
 import com.naekkonyang.domain.account.Account;
+import com.naekkonyang.domain.diary.Diary;
 import com.naekkonyang.domain.diary.DiaryService;
 import com.naekkonyang.domain.pet.Pet;
 import com.naekkonyang.domain.pet.PetService;
@@ -25,6 +26,7 @@ public class IndexController {
 
     private final HttpSession httpSession;
     private final PetService petService;
+    private final DiaryService diaryService;
 
     @GetMapping("/")
     public String index(Model model, Account account) {
@@ -35,21 +37,26 @@ public class IndexController {
         if(user != null) {
             model.addAttribute("userName", user.getName()); //회원명
             account.setId(user.getId());
+
+            List<Pet> petList = petService.getPetList(account);
+            List<Pet> diaryCompleteList = new ArrayList<>();
+
+            // 펫과 함께한 날짜(일수)를 계산하여 넣어준다.
+            for (Pet pet : petList) {
+                    String day = pet.getPet_birth();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일", Locale.US);
+                    LocalDate date = LocalDate.parse(day, formatter); //펫의 생일
+                    LocalDate thisDate = LocalDate.now(); //현재날짜
+                    Long petDate = ChronoUnit.DAYS.between(date, thisDate); //차이
+                    pet.setPet_days(petDate);
+                if(diaryService.checkDiaryComplete(pet)) { //수정해야될 일기가있다
+                    diaryCompleteList.add(pet);
+                }
+            }
+            model.addAttribute("diaryCompleteList", diaryCompleteList);
+            model.addAttribute("petList", petList);
         }
 
-        List<Pet> petList = petService.getPetList(account);
-
-        // 펫과 함께한 날짜(일수)를 계산하여 넣어준다.
-        for (Pet pet : petList) {
-            String day = pet.getPet_birth();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일", Locale.US);
-            LocalDate date = LocalDate.parse(day, formatter); //펫의 생일
-            LocalDate thisDate = LocalDate.now(); //현재날짜
-            Long petDate = ChronoUnit.DAYS.between(date, thisDate); //차이
-            pet.setPet_days(petDate);
-        }
-
-        model.addAttribute("petList", petList);
         return "index";
     }
 
@@ -57,5 +64,4 @@ public class IndexController {
     public String login() {
         return "login";
     }
-
 }

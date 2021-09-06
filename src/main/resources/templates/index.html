@@ -59,6 +59,14 @@
             left: auto;
         }
     }
+
+    .diary_complete_list {
+        padding: 10px;
+    }
+
+    .diary_complete_group {
+        margin-top: 10px;
+    }
 </style>
 <style th:replace="fragments.html :: style-nomalrize"></style>
 <body>
@@ -66,15 +74,22 @@
     <nav th:replace="fragments.html :: main-nav"></nav>
     <div>
         <div class="main_contents">
-                <div th:each="pet : ${petList}">
-                    <p class="pet-days"><span th:text="${pet.pet_name}"></span>와 함께한지 <span class="pet-days-str" th:text="${pet.pet_days}">︎</span>일 ❤</p>
+                <div th:each="pet, i : ${petList}">
+                    <!--메인화면에 펫 5마리만 우선 노출-->
+                    <p class="pet-days" th:if="${i.index < 5}"><span th:text="${pet.pet_name}"></span>와 함께한지 <span class="pet-days-str" th:text="${pet.pet_days}">︎</span>일 ❤</p>
                 </div>
         </div>
         <!--   유저 정보가 담겨있으면, 유저의 정보를 노출시켜줌     -->
-        <div th:if="${userName}" class="main-menu-box">
-            <div class="diary_notification">
-                <div>일기를 작성해 주세요</div>
+        <div th:if="${!diaryCompleteList.isEmpty()}" class="main-menu-box">
+            <a th:href="@{/diary-petList}">
+            <div class="diary_notification" th:href="@{/diary-petList}">
+                <div class="diary_notification_text">새로운 일기를 작성해 주세요</div>
+                <span class="diary_complete_group" th:each="petList : ${diaryCompleteList}">
+                    <span class="diary_complete_list" th:text="${petList.pet_name}"></span>
+                </span>
             </div>
+            </a>
+
 <!--            <div>-->
 <!--                <a class="btn btn-default" href="/pet-register">반려동물 등록</a>-->
 <!--                <a class="btn btn-default" href="/pet-list">반려동물 목록</a>-->

@@ -2,6 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments.html :: head"></head>
 <style th:replace="fragments.html :: style-nomalrize"></style>
+<style>
+    .filebox label {
+        display: inline-block;
+        padding: .5em .75em;
+        color: #999;
+        font-size: inherit;
+        line-height: normal;
+        vertical-align: middle;
+        background-color: #fdfdfd;
+        cursor: pointer;
+        border: 1px solid #ebebeb;
+        border-bottom-color: #e2e2e2;
+        border-radius: .25em;
+    }
+    .filebox input[type="file"] {
+        /* 파일 필드 숨기기 */
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip:rect(0,0,0,0);
+        border: 0;
+    }
+</style>
 <body>
 <div class="container">
     <nav th:replace="fragments.html :: main-nav"></nav>
@@ -27,7 +53,10 @@
                     <img id="imgView" th:src="*{picture}" style="width: 100%;">
                 </div>
                 <input id="imgLink" type="hidden" th:field="*{picture}">
-                <input id="upload" name="img" type="file" value="" accept="jpge,png,jpg"/>
+                <div class="filebox">
+                    <label for="upload">업로드</label>
+                    <input type="file" name="img" id="upload" value="" accept="jpge,png,jpg">
+                </div>
                 <div class="btn btn-default">
                     <a onclick="history.back();">목록으로</a>
                 </div>
@@ -41,48 +70,57 @@
         </div>
     <div th:replace="fragments.html :: menu-group"></div>
     <footer th:replace="fragments.html :: footer"></footer>
+    <div class="fakeLoader" style="display: none"><img src="/images/loading.gif" alt="fakeLoader" style="width: 100%"></div>
 </div>
-</body>
+
+
 <script type="text/javascript">
 
-        const fileInput = document.getElementById("upload");
-        const upload = (file) => {
-            if (file && file.size < 5000000) {
-                const formData = new FormData();
+    const fileInput = document.getElementById("upload");
+    const upload = (file) => {
+        if (file && file.size < 5000000) {
+            $('.fakeLoader').show();
+            alert('사진업로드까지 5~10초정도 소요될수있습니다\n 잠시만 기다려주세요');
+            const formData = new FormData();
 
-                formData.append("image", file);
-                fetch("https://api.imgur.com/3/image", {
-                    method: "POST",
-                    headers: {
-                        Authorization: "Client-ID c69f193f9abc941",
-                        Accept: "application/json",
-                    },
-                    body: formData,
-                })
-                    .then((response) => response.json())
-                    .then((response) => {
-                        console.log(response);
-                        console.log(response.data.link);
-                        const imgLink = response.data.link;
-                        $('#imgLink').val(imgLink);
-                        $('#imgView').attr('src', imgLink)
-                    });
-            } else {
-                console.error("파일 용량 초과");
-            }
-        };
-
-        fileInput &&
-        fileInput.addEventListener("change", () => {
-            upload(fileInput.files[0]);
-        });
-
-        function submitData() {
-            alert('수정되었습니다.');
-            $('form').submit();
+            formData.append("image", file);
+            fetch("https://api.imgur.com/3/image", {
+                method: "POST",
+                headers: {
+                    Authorization: "Client-ID c69f193f9abc941",
+                    Accept: "application/json",
+                },
+                body: formData,
+            })
+                .then((response) => response.json())
+                .then((response) => {
+                    console.log(response);
+                    console.log(response.data.link);
+                    const imgLink = response.data.link;
+                    $('#imgLink').val(imgLink);
+                    $('#imgView').attr('src', imgLink)
+                });
+            $('.fakeLoader').hide();
+        } else {
+            console.error("파일 용량 초과");
+            alert("파일 용량이 초과되었습니다. 5MB 이하로 업로드해주세요.");
         }
 
+    };
+
+    fileInput &&
+    fileInput.addEventListener("change", () => {
+        upload(fileInput.files[0]);
+    });
+
+    function submitData() {
+        alert('수정되었습니다.');
+        $('form').submit();
+    }
+
 </script>
+
+</body>
 
 
 </html>

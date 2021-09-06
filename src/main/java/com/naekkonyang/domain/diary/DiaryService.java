@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -104,6 +105,38 @@ public class DiaryService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean checkDiaryComplete(Pet pet) {
+        try {
+            Diary diary = getDiaryComplete(pet);
+
+            if(diary != null) {
+                LocalDateTime mdDate = diary.getModifiedDate(); //수정일
+                LocalDateTime ctDate = diary.getCreatedDate(); //생성일
+                LocalDateTime dateNow = LocalDateTime.now();
+                long between = ChronoUnit.SECONDS.between(ctDate, dateNow); //두 일자비교
+
+                if (mdDate.compareTo(ctDate) == 0) { //같을때 ( 즉, 수정을 하지 않았을때 )
+                    return true;
+                } else {
+                    if(!ctDate.isEqual(mdDate) && between > 86400) { //수정을 했지만 다음 일기를 받지않았을때
+                        return true;
+                    }
+                }
+            } else { // 펫은 생성했지만, 일기를 한번도 생성안했다. 노출시켜주자
+                return true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false; //새로쓸 일기가 없을때
+    }
+
+    // 옵셔널 사용 값이 비어있으면 null 을 던져주자
+    public Diary getDiaryComplete(Pet pet) {
+        return diaryRepository.findTopByPet_idOrderByCreatedDateDesc(pet.getId()).orElse(null);
     }
 
 }
