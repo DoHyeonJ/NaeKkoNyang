@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments.html :: head"></head>
+<style th:replace="fragments.html :: style-nomalrize"></style>
+<style>
+  .filebox label {
+    display: inline-block;
+    padding: .5em .75em;
+    color: #999;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: 1.25em;
+    height: 30px;
+  }
+  .filebox input[type="file"] {
+    /* 파일 필드 숨기기 */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+    border: 0;
+  }
+
+  textarea {
+    margin: 0;
+    width: 100%;
+    border: 0;
+    resize: none;
+  }
+
+  textarea::placeholder {
+    color: #ddd;
+  }
+
+  .btn-default {
+    color: #ddd;
+    background-color: #fff;
+    height: 31px;
+    border-color: #ccc;
+    border-radius: 18px;
+  }
+</style>
+<body>
+<div class="container">
+  <nav th:replace="fragments.html :: main-nav"></nav>
+  <div th:object="${diaryForm}">
+    <div id="petId" style="display: none" th:text="*{id}"></div>
+    <form th:action="@{'/diary-update/' + ${diaryForm.id}}" method="POST">
+      <h4 th:text="*{content}" style="text-align: left"></h4>
+      <div>
+        <img id="imgView" th:src="*{picture}" style="width: 100%;">
+      </div>
+      <input id="imgLink" type="hidden" th:field="*{picture}">
+      <div class="filebox">
+        <label for="upload">사진 업로드</label>
+        <input type="file" name="img" id="upload" value="" accept="jpge,png,jpg">
+      </div>
+      <div>
+        <textarea th:field="*{reply}" placeholder="내용을 입력해주세요"></textarea>
+      </div>
+      <div class="btn btn-default">
+        <a onclick="submitData()">완료</a>
+      </div>
+      <div class="btn btn-default">
+        <a onclick="cancelData()">취소</a>
+      </div>
+      <input type="hidden" th:field="*{num}">
+      <input type="hidden" th:field="*{content}">
+      <input type="hidden" th:field="*{title}">
+    </form>
+  </div>
+  <div th:replace="fragments.html :: menu-group"></div>
+  <footer th:replace="fragments.html :: footer"></footer>
+  <div class="fakeLoader" style="display: none"><img src="/images/loading.gif" alt="fakeLoader" style="width: 100%"></div>
+</div>
+
+
+<script type="text/javascript">
+
+  const textEle = $('textarea');
+  textEle.on('keyup', function() {
+    adjustHeight();
+  });
+
+  function adjustHeight() {
+    const textEle = $('textarea');
+    textEle[0].style.height = 'auto';
+    const textEleHeight = textEle.prop('scrollHeight');
+    textEle.css('height', textEleHeight);
+  };
+
+  const fileInput = document.getElementById("upload");
+  const upload = (file) => {
+    if (file && file.size < 5000000) {
+      alert('사진업로드까지 5~10초정도 소요될수있습니다\n 잠시만 기다려주세요');
+      const formData = new FormData();
+
+      formData.append("image", file);
+      fetch("https://api.imgur.com/3/image", {
+        method: "POST",
+        headers: {
+          Authorization: "Client-ID c69f193f9abc941",
+          Accept: "application/json",
+        },
+        body: formData,
+      })
+              .then((response) => response.json())
+              .then((response) => {
+                console.log(response);
+                console.log(response.data.link);
+                const imgLink = response.data.link;
+                $('#imgLink').val(imgLink);
+                $('#imgView').attr('src', imgLink)
+              });
+    } else {
+      console.error("파일 용량 초과");
+      alert("파일 용량이 초과되었습니다. 5MB 이하로 업로드해주세요.");
+    }
+
+  };
+
+  fileInput &&
+  fileInput.addEventListener("change", () => {
+    upload(fileInput.files[0]);
+  });
+
+  function submitData() {
+    if (confirm('일기정보를 수정하시겠습니까?')) {
+
+      if ($('textarea').val() === "" && $('.imgLink').val() === undefined) {
+        alert('내용이나 사진을 등록해주세요 ~!');
+      }
+
+      $('form').submit();
+    }
+  }
+
+  function cancelData() {
+    if (confirm('수정을 취소하시겠습니까?')) {
+      location.href='/diary-detail/' + $('#petId').text();
+    }
+  }
+
+</script>
+</body>
+
+
+</html>

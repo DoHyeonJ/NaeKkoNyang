@@ -3,121 +3,66 @@
 <head th:replace="fragments.html :: head"></head>
 <style th:replace="fragments.html :: style-nomalrize"></style>
 <style>
-    .filebox label {
-        display: inline-block;
-        padding: .5em .75em;
-        color: #999;
-        font-size: inherit;
-        line-height: normal;
-        vertical-align: middle;
-        background-color: #fdfdfd;
-        cursor: pointer;
-        border: 1px solid #ebebeb;
-        border-bottom-color: #e2e2e2;
-        border-radius: .25em;
+    .diary-title {
+        font-size: 20px;
     }
-    .filebox input[type="file"] {
-        /* 파일 필드 숨기기 */
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip:rect(0,0,0,0);
-        border: 0;
+
+    .diary-num {
+        padding: 0 0 15px 0;
+        text-align: center;
+    }
+    .diary-date{
+        font-size: 12px;
+        color: gray;
+    }
+
+    .diary-content {
+        color: darkgray;
     }
 </style>
 <body>
 <div class="container">
     <nav th:replace="fragments.html :: main-nav"></nav>
-    <h3>일기장 보기</h3>
         <div th:object="${diaryForm}">
-            <form th:action="@{'/diary-update/' + ${diaryForm.id}}" method="POST">
+                <div class="diary-num"><span th:text="${pet.pet_name}"></span>의 <span th:text="*{num}"></span><span>번째 일기❤︎</span></div>
+<!--            <div>-->
+<!--                <span>등록일 : </span><span th:text="*{#temporals.format(createdDate, 'yyyy-MM-dd HH:mm')}"></span>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <span>수정일 : </span><span th:text="*{#temporals.format(modifiedDate, 'yyyy-MM-dd HH:mm')}"></span>-->
+<!--            </div>-->
             <div>
-                <span>등록일 : </span><span th:text="*{#temporals.format(createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+                <span class="diary-title" th:text="*{title}"></span><br>
+                <p class="diary-date"># <span th:text="*{#temporals.format(createdDate, 'yyyy-MM-dd')}"></span></p>
             </div>
-            <div th:if="*{!createdDate.isEqual(modifiedDate)}">
-                <span>수정일 : </span><span th:text="*{#temporals.format(modifiedDate, 'yyyy-MM-dd HH:mm')}"></span>
+            <div th:if="*{reply != null || picture != null}">
+                <a th:onclick="'location.href=\'/diary-update/'+ @{${diaryForm.id}} + '\''">
+                    <div>
+                        <img id="imgView" th:src="*{picture}" style="width: 100%;">
+                    </div>
+                    <br>
+                    <div th:if="*{reply}">
+                        <span th:text="*{reply}"></span>
+                    </div>
+                </a>
             </div>
-            <div>
-                <span>제목 : </span><span th:text="*{title}"></span>
-            </div>
-            <div>
-                <span>내용 : </span><span th:text="*{content}"></span>
-            </div>
-            <div>
-                <span>댓글 : </span><input type="text" th:id="reply" placeholder="댓글을 입력해주세요" th:field="*{reply}">
-            </div>
+            <div th:if="*{reply == null && picture == null}">
                 <div>
-                    <img id="imgView" th:src="*{picture}" style="width: 100%;">
+                    <a th:onclick="'location.href=\'/diary-update/'+ @{${diaryForm.id}} + '\''">
+                        <p class="diary-content" th:text="*{content}"></p>
+                    </a>
                 </div>
-                <input id="imgLink" type="hidden" th:field="*{picture}">
-                <div class="filebox">
-                    <label for="upload">사진 업로드</label>
-                    <input type="file" name="img" id="upload" value="" accept="jpge,png,jpg">
-                </div>
-                <div class="btn btn-default">
-                    <a onclick="history.back();">목록으로</a>
-                </div>
-                <div class="btn btn-default">
-                    <a onclick="submitData()">수정</a>
-                </div>
-                <input type="hidden" th:field="*{num}">
-                <input type="hidden" th:field="*{content}">
-                <input type="hidden" th:field="*{title}">
-            </form>
+            </div>
         </div>
     <div th:replace="fragments.html :: menu-group"></div>
     <footer th:replace="fragments.html :: footer"></footer>
     <div class="fakeLoader" style="display: none"><img src="/images/loading.gif" alt="fakeLoader" style="width: 100%"></div>
 </div>
 
-
 <script type="text/javascript">
-
-    const fileInput = document.getElementById("upload");
-    const upload = (file) => {
-        if (file && file.size < 5000000) {
-            $('.fakeLoader').show();
-            alert('사진업로드까지 5~10초정도 소요될수있습니다\n 잠시만 기다려주세요');
-            const formData = new FormData();
-
-            formData.append("image", file);
-            fetch("https://api.imgur.com/3/image", {
-                method: "POST",
-                headers: {
-                    Authorization: "Client-ID c69f193f9abc941",
-                    Accept: "application/json",
-                },
-                body: formData,
-            })
-                .then((response) => response.json())
-                .then((response) => {
-                    console.log(response);
-                    console.log(response.data.link);
-                    const imgLink = response.data.link;
-                    $('#imgLink').val(imgLink);
-                    $('#imgView').attr('src', imgLink)
-                });
-            $('.fakeLoader').hide();
-        } else {
-            console.error("파일 용량 초과");
-            alert("파일 용량이 초과되었습니다. 5MB 이하로 업로드해주세요.");
-        }
-
-    };
-
-    fileInput &&
-    fileInput.addEventListener("change", () => {
-        upload(fileInput.files[0]);
-    });
-
-    function submitData() {
-        alert('수정되었습니다.');
-        $('form').submit();
+    function updateDiary(id) {
+        location.href = '/diary-update/' + id;
     }
-
 </script>
 
 </body>

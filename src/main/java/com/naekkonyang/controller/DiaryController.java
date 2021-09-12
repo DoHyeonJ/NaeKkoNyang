@@ -57,8 +57,20 @@ public class DiaryController {
             return "redirect:/diary-petList";
         }
 
+        model.addAttribute("pet", petService.getPet(diary.getPet()));
         model.addAttribute(modelMapper.map(diary, DiaryForm.class));
         return "diary/diary-detail";
+    }
+
+    @GetMapping("/diary-update/{id}")
+    public String diaryUpdate(@PathVariable("id") Diary diary, Model model) {
+        if (diaryService.checkAccount(diary)) {
+            return "redirect:/diary-petList";
+        }
+
+        model.addAttribute("pet", petService.getPet(diary.getPet()));
+        model.addAttribute(modelMapper.map(diary, DiaryForm.class));
+        return "diary/diary-update";
     }
 
     @PostMapping("/diary-update/{id}")
