@@ -48,7 +48,7 @@ public class IndexController {
                     LocalDate date = LocalDate.parse(day, formatter); //펫의 생일
                     LocalDate thisDate = LocalDate.now(); //현재날짜
                     Long petDate = ChronoUnit.DAYS.between(date, thisDate); //차이
-                    pet.setPet_days(petDate);
+                    pet.setPet_days(petDate+2);
                 if(diaryService.checkDiaryComplete(pet)) { //수정해야될 일기가있다
                     diaryCompleteList.add(pet);
                 }

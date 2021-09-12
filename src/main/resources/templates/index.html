@@ -80,27 +80,15 @@
                 </div>
         </div>
         <!--   유저 정보가 담겨있으면, 유저의 정보를 노출시켜줌     -->
-        <div th:if="${!diaryCompleteList.isEmpty()}" class="main-menu-box">
+        <div th:if="${diaryCompleteList}" class="main-menu-box">
             <a th:href="@{/diary-petList}">
-            <div class="diary_notification" th:href="@{/diary-petList}">
+            <div class="diary_notification">
                 <div class="diary_notification_text">새로운 일기를 작성해 주세요</div>
                 <span class="diary_complete_group" th:each="petList : ${diaryCompleteList}">
                     <span class="diary_complete_list" th:text="${petList.pet_name}"></span>
                 </span>
             </div>
             </a>
-
-<!--            <div>-->
-<!--                <a class="btn btn-default" href="/pet-register">반려동물 등록</a>-->
-<!--                <a class="btn btn-default" href="/pet-list">반려동물 목록</a>-->
-<!--                <a class="btn btn-default" th:if="${userName}" href="/logout">로그아웃</a>-->
-<!--            </div>-->
-<!--            <div style="margin-top: 10px;">-->
-<!--                <a style=" width: 50%;" class="btn btn-default" href="/diary-petList">일기장</a>-->
-<!--            </div>-->
-<!--<div style="margin-top: 15px;">-->
-<!--    <a class="user-information" href="#" th:alt="노션링크">사용자 안내 확인 -></a>-->
-<!--</div>-->
         </div>
         <div th:if="!${userName}" class="login-btn">
             <button class="login-btn-div" onclick="location.href='/oauth2/authorization/google'"><img class="login-icon" src="/images/google_logo.png"/>
