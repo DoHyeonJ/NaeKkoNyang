@@ -16,6 +16,7 @@
 
 # 2. 사용 기술 및 기능
 - Java 11 
+- JPA
 - Spring Boot 2.4.5 (gradle)
 - mariadb
 - Jqyery, Ajax
