@@ -25,8 +25,3 @@
 - AWS
 
 <br>
-
-
-# 3. DB 구성 및 관계도
-<img width="439" alt="스크린샷 2021-09-05 오후 2 52 42" src="https://user-images.githubusercontent.com/59347101/132116955-443d79bd-76b9-479a-a6ee-ddc544f21a0e.png">
-
